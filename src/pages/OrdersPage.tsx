@@ -8,17 +8,17 @@ export function OrdersPage() {
     const { data: orders, isPending, error } = useGetOrders();
     const { errorToast } = useToast();
 
-    if (error) {
-        errorToast(errorMessage("Failed to load orders. Please try again later.", error));
-        return null;
-    }
-
     if (isPending) {
         return (
             <div className="flex justify-center min-h-[50vh]">
                 <LoadingSpinner className="w-10 h-10 text-muted-foreground" />
             </div>
         );
+    }
+
+    if (error) {
+        errorToast(errorMessage("Failed to load orders. Please try again later.", error));
+        return null;
     }
 
     return (

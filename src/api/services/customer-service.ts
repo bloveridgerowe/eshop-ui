@@ -25,6 +25,10 @@ export async function logout(): Promise<void> {
     await api.post("/auth/logout");
 }
 
+export async function demoLogin(): Promise<void> {
+    await api.post("/auth/login/demo");
+}
+
 export async function login({ email, password }: { email: string; password: string }): Promise<void> {
     await api.post("/auth/login", { email, password });
 }

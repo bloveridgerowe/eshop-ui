@@ -9,10 +9,11 @@ import { Separator } from "@/components/ui/separator";
 import { LogIn, UserPlus } from "lucide-react";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { errorMessage } from "@/utilities/errors";
-import { useLogin, useRegister } from "@/api/hooks/customer-hooks";
+import { useLogin, useRegister, useDemoLogin } from "@/api/hooks/customer-hooks";
 
 export function LoginDialog() {
     const { mutateAsync: login, isPending: isLoggingIn } = useLogin();
+    const { mutateAsync: demoLogin, isPending: isDemoLoggingIn } = useDemoLogin();
     const { mutateAsync: register, isPending: isRegistering } = useRegister();
     const [ formState, setFormState ] = useState<"login" | "register">("login");
     const [ email, setEmail] = useState("");
@@ -35,10 +36,25 @@ export function LoginDialog() {
 
             navigate(Paths.featured());
             setOpen(false);
-        } catch (error) {
+        }
+        catch (error) {
             setError(errorMessage("An unexpected error occurred.", error));
         }
     };
+
+    const handleDemoLogin = async () => {
+        setError("");
+
+        try {
+            await demoLogin();
+
+            navigate(Paths.featured());
+            setOpen(false);
+        }
+        catch (error) {
+            setError(errorMessage("An unexpected error occurred.", error));
+        }
+    }
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -61,7 +77,7 @@ export function LoginDialog() {
                     </DialogDescription>
                 </DialogHeader>
                 {error && (
-                    <Alert variant="destructive" className="mb-4">
+                    <Alert variant="destructive">
                         <AlertDescription>{error}</AlertDescription>
                     </Alert>
                 )}
@@ -74,15 +90,20 @@ export function LoginDialog() {
                         <Label htmlFor="password">Password</Label>
                         <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" required/>
                     </div>
-                    <Button type="submit" className="w-full" disabled={isLoggingIn || isRegistering}>
+                    <Button type="submit" className="w-full" disabled={isLoggingIn || isDemoLoggingIn || isRegistering}>
                         {formState === "login"
                             ? isLoggingIn ? "Logging in..." : "Login"
                             : isRegistering ? "Registering..." : "Register"}
                     </Button>
                     <Separator className="my-4" />
-                    <Button type="button" className="w-full" disabled={isLoggingIn || isRegistering} onClick={() => setFormState(formState === "login" ? "register" : "login")}>
-                        {formState === "login" ? "Create An Account" : "Back To Login"}
-                    </Button>
+                    <div className="flex flex-col gap-4">
+                        <Button type="button" className="w-full" disabled={isLoggingIn || isDemoLoggingIn || isRegistering} onClick={() => setFormState(formState === "login" ? "register" : "login")}>
+                            {formState === "login" ? "Create An Account" : "Back To Login"}
+                        </Button>
+                        <Button variant="constructive" type="button" className="w-full" disabled={isLoggingIn || isDemoLoggingIn || isRegistering} onClick={handleDemoLogin}>
+                            {isDemoLoggingIn ? "Logging in..." : "Login To Demo Account"}
+                        </Button>
+                    </div>
                 </form>
             </DialogContent>
         </Dialog>

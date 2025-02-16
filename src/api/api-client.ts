@@ -21,9 +21,8 @@ export const api = axios.create({
 api.interceptors.response.use(response => response, async error => {
     if (error.response?.status === 401) {
         if (!isRefreshing) {
-            isRefreshing = true;
-
             try {
+                isRefreshing = true;
                 await api.post("/token/refresh");
                 isRefreshing = false;
                 return api(error.config);

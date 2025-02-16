@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateCardDetails, updateAddressDetails, updateName, changePassword, logout, login, register } from "@/api/services/customer-service";
+import { updateCardDetails, updateAddressDetails, updateName, changePassword, logout, login, register, demoLogin } from "@/api/services/customer-service";
 import { queryKeys } from "@/api/hooks/query-keys";
 
 export function useUpdateName() {
@@ -22,6 +22,14 @@ export function useUpdateCardDetails() {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: updateCardDetails,
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: queryKeys.customer }),
+    });
+}
+
+export function useChangePassword() {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: changePassword,
         onSuccess: () => queryClient.invalidateQueries({ queryKey: queryKeys.customer }),
     });
 }
@@ -53,10 +61,10 @@ export function useLogout() {
     });
 }
 
-export function useChangePassword() {
+export function useDemoLogin() {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: changePassword,
+        mutationFn: demoLogin,
         onSuccess: () => queryClient.invalidateQueries({ queryKey: queryKeys.customer }),
     });
 }

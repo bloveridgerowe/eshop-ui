@@ -118,7 +118,7 @@ export function ProductPage() {
                                 {isAddingToBasket ? "Adding..." : <span>Add to Basket</span>}
                             </Button>
                         </div>
-                        <p className="text-base text-justify whitespace-pre-line">
+                        <p className="text-base text-left whitespace-pre-line">
                             {product.description}
                         </p>
                     </div>
