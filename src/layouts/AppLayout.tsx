@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import { TopBar } from "@/components/TopBar";
-import { MobileTopBar } from "@/components/MobileTopBar";
-import { CategoriesSideBar } from "@/components/CategoriesSidebar";
-import { MobileCategoriesRow } from "@/components/MobileCategoriesRow";
+import { TopBar } from "@/components/navigation/TopBar";
+import { MobileTopBar } from "@/components/navigation/MobileTopBar";
+import { CategoriesSideBar } from "@/components/navigation/CategoriesSidebar";
+import { MobileCategoriesRow } from "@/components/navigation/MobileCategoriesRow";
 
 type AppLayoutProps = {
     displayCategories: boolean;

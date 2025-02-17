@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { queryKeys} from "@/api/hooks/query-keys";
+import { queryKeys } from "@/api/hooks/query-keys";
 import { addToBasket, clearBasket, deleteItemFromBasket, getItemsInBasket, updateQuantityInBasket } from "@/api/services/basket-service";
 
 export function useGetBasketItems() {

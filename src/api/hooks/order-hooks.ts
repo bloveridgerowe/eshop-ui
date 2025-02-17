@@ -1,5 +1,5 @@
-import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {getOrders, placeOrder} from "@/api/services/order-service";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { getOrders, placeOrder } from "@/api/services/order-service";
 import { queryKeys } from "@/api/hooks/query-keys";
 
 export function useGetOrders() {
