@@ -9,7 +9,7 @@ import { useAuth } from "@/hooks/use-auth";
 
 export function MobileTopBar() {
     const [ searchTerm, setSearchTerm ] = useState("");
-    const { user, isLoading } = useAuth();
+    const { user } = useAuth();
     const navigate = useNavigate();
 
     const handleSearch = () => {
@@ -31,9 +31,7 @@ export function MobileTopBar() {
                     </Link>
                 </div>
                 <div className="flex gap-2">
-                    {isLoading ? (
-                        <Button disabled>Loading...</Button>
-                    ) : user ? (
+                    {user ? (
                         <>
                             <Link to={Paths.profile()}>
                                 <Button size="icon">

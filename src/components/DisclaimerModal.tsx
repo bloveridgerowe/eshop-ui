@@ -2,15 +2,15 @@ import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, A
 import { useDisclaimer } from "@/hooks/use-disclaimer";
 import { Info } from "lucide-react";
 
-export const DisclaimerModal = () => {
+export function DisclaimerModal() {
     const { hasAccepted, acceptDisclaimer } = useDisclaimer();
 
-    if (hasAccepted) {
+    if (hasAccepted === null) {
         return null;
     }
 
     return (
-        <AlertDialog open>
+        <AlertDialog open={!hasAccepted}>
             <AlertDialogContent className="sm:max-w-[400px]">
                 <AlertDialogHeader>
                     <AlertDialogTitle className="text-2xl gap-1.5 font-bold flex items-center text-left">

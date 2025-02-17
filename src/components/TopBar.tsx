@@ -9,7 +9,7 @@ import { useAuth } from "@/hooks/use-auth";
 
 export function TopBar() {
     const navigate = useNavigate();
-    const { user, isLoading } = useAuth();
+    const { user } = useAuth();
     const [ searchTerm, setSearchTerm ] = useState("");
 
     const handleSearch = () => {
@@ -42,9 +42,7 @@ export function TopBar() {
                 </Button>
             </div>
             <div className="flex w-full justify-between md:w-auto md:justify-normal gap-2">
-                {isLoading ? (
-                    <Button disabled>Loading...</Button>
-                ) : user ? (
+                {user ? (
                     <>
                         <Link to={Paths.profile()}>
                             <Button><User size={16} className="mr-1" />Profile</Button>

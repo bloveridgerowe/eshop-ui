@@ -6,13 +6,16 @@ import { Toaster } from './components/ui/toaster';
 import { QueryClientProvider } from "@tanstack/react-query";
 import { DisclaimerModal } from "@/components/DisclaimerModal"
 import { queryClient } from './api/query-client'
+import { AuthResolver } from "@/components/AuthResolver.tsx";
 
 createRoot(document.getElementById('root')!).render(
-    <BrowserRouter>
-        <DisclaimerModal />
-        <Toaster/>
-        <QueryClientProvider client={queryClient}>
-            <AppRoutes/>
-        </QueryClientProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+            <AuthResolver>
+                <DisclaimerModal />
+                <Toaster />
+                <AppRoutes />
+            </AuthResolver>
+        </BrowserRouter>
+    </QueryClientProvider>
 )
