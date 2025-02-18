@@ -4,7 +4,7 @@ import { queryKeys } from "@/api/hooks/query-keys";
 import { getCustomerDetails } from "@/api/services/customer-service";
 
 export function useAuth() {
-    const { data: user, isLoading, isError } = useQuery({
+    const { data: user, isLoading, isError, status } = useQuery({
         queryKey: queryKeys.customer,
         queryFn: async () => {
             try {
@@ -18,8 +18,9 @@ export function useAuth() {
             }
         },
         staleTime: 60 * 1000,
-        retry: false
+        gcTime: 60 * 1000,
+        retry: false,
     });
 
-    return { user, isLoading, isError };
+    return { user, isLoading, isError, status };
 }

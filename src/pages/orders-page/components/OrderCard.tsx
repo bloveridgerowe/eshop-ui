@@ -2,26 +2,11 @@ import { OrderDetails, OrderStatus } from "@/api/services/order-service";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/shadcn/card";
 import { format } from "date-fns";
 
-function formatDate(dateString: string) {
-    return format(new Date(dateString), "MMM d, yyyy HH:mm");
+export interface OrderCardProps {
+    order: OrderDetails
 }
 
-function getStatusColor(status: OrderStatus): string {
-    switch (status.name.toUpperCase()) {
-        case 'PENDING':
-            return 'text-yellow-500';
-        case 'SHIPPED':
-            return 'text-blue-500';
-        case 'DELIVERED':
-            return 'text-green-500';
-        case 'CANCELED':
-            return 'text-red-500';
-        default:
-            return 'text-gray-500';
-    }
-}
-
-export function OrderCard({order}: { order: OrderDetails }) {
+export function OrderCard({ order }: OrderCardProps) {
     return (
         <Card key={order.id} className="mb-4">
             <CardHeader>
@@ -62,4 +47,23 @@ export function OrderCard({order}: { order: OrderDetails }) {
             </CardContent>
         </Card>
     );
+}
+
+function getStatusColor(status: OrderStatus): string {
+    switch (status.name.toUpperCase()) {
+        case 'PENDING':
+            return 'text-yellow-500';
+        case 'SHIPPED':
+            return 'text-blue-500';
+        case 'DELIVERED':
+            return 'text-green-500';
+        case 'CANCELED':
+            return 'text-red-500';
+        default:
+            return 'text-gray-500';
+    }
+}
+
+function formatDate(dateString: string) {
+    return format(new Date(dateString), "MMM d, yyyy HH:mm");
 }

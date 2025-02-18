@@ -7,16 +7,16 @@ import { Toaster } from '@/components/shadcn/toaster';
 import { QueryClientProvider } from "@tanstack/react-query";
 import { DisclaimerModal } from "@/components/modals/DisclaimerModal"
 import { queryClient } from './api/query-client'
-import { AuthResolver } from "@/components/auth/AuthResolver";
+import { AppGate } from "@/components/auth/AppGate";
 
 createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-            <AuthResolver>
+            <AppGate>
                 <DisclaimerModal />
                 <Toaster />
                 <AppRoutes />
-            </AuthResolver>
+            </AppGate>
         </BrowserRouter>
     </QueryClientProvider>
 )

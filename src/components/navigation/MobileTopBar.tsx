@@ -8,8 +8,6 @@ import { LoginModal } from "@/components/modals/LoginModal";
 import { useAuth } from "@/hooks/use-auth";
 
 export function MobileTopBar() {
-    console.log("MobileTopBar Render");
-
     const [ searchTerm, setSearchTerm ] = useState("");
     const { user } = useAuth();
     const navigate = useNavigate();

@@ -1,15 +1,13 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { ProductCard } from "@/pages/browse-products-page/components/ProductCard";
-import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
+import { LoadingSpinner, LoadingSpinnerContainer } from "@/components/ui/LoadingSpinner";
 import { Paths } from "@/utilities/paths";
 import { useGetProducts } from "@/api/hooks/product-hooks";
-import { ErrorPage } from "@/pages/errors/error-page.tsx";
-import { useAuth } from "@/hooks/use-auth.tsx";
+import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/result-pages/ResultPage";
+import { useAuth } from "@/hooks/use-auth";
 
 export function BrowseProductsPage() {
-    console.log("BrowseProductsPage Render");
-
     const navigate = useNavigate();
     const [ searchParams ] = useSearchParams();
     const searchQuery = searchParams.get("search") || undefined;
@@ -27,28 +25,33 @@ export function BrowseProductsPage() {
 
     if (isPending) {
         return (
-            <div className="flex justify-center min-h-[50vh]">
-                <LoadingSpinner className="w-10 h-10 text-muted-foreground" />
-            </div>
+            <LoadingSpinnerContainer>
+                <LoadingSpinner/>
+            </LoadingSpinnerContainer>
         );
     }
 
     if (isError) {
-        return <ErrorPage title="Failed to load Products." message="Please try again later." />;
+        return (
+            <ResultPage variant="error">
+                <ResultPageHeader>Failed to load products.</ResultPageHeader>
+                <ResultPageMessage>Please try again later.</ResultPageMessage>
+            </ResultPage>
+        );
+    }
+
+    if (!products || products.length === 0) {
+        return (
+            <ResultPage variant="info">
+                <ResultPageHeader>No products found.</ResultPageHeader>
+                <ResultPageMessage>Try adjusting your search or browsing other categories.</ResultPageMessage>
+            </ResultPage>
+        );
     }
 
     return (
-        <div className="grid
-            grid-cols-2
-            sm:grid-cols-2
-            lg:grid-cols-3
-            xl:grid-cols-4
-            2xl:grid-cols-5
-            3xl:grid-cols-6
-            gap-4
-            w-full
-        ">
-            {products?.map((product) => (
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 gap-4 w-full">
+            {products.map((product) => (
                 <ProductCard key={product.id} product={product} loggedIn={!!user} />
             ))}
         </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Paths } from "@/utilities/paths"
 import { Alert, AlertDescription } from "@/components/shadcn/alert";
@@ -22,7 +22,7 @@ export function LoginModal() {
     const [ open, setOpen ] = useState(false);
     const navigate = useNavigate();
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setError("");
 

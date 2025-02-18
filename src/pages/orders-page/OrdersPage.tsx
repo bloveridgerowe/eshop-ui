@@ -1,35 +1,48 @@
-import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
+import { LoadingSpinner, LoadingSpinnerContainer } from "@/components/ui/LoadingSpinner";
 import { OrderCard } from "@/pages/orders-page/components/OrderCard";
 import { useGetOrders } from "@/api/hooks/order-hooks";
-import {ErrorPage} from "@/pages/errors/error-page.tsx";
+import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/result-pages/ResultPage";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/shadcn/button";
+import { UserPageLayout } from "@/layouts/UserPageLayout.tsx";
 
 export function OrdersPage() {
     const { data: orders, isPending, isError } = useGetOrders();
 
     if (isPending) {
         return (
-            <div className="flex justify-center min-h-[50vh]">
-                <LoadingSpinner className="w-10 h-10 text-muted-foreground" />
-            </div>
+            <LoadingSpinnerContainer>
+                <LoadingSpinner/>
+            </LoadingSpinnerContainer>
         );
     }
 
     if (isError) {
-        return <ErrorPage title="Failed to load Orders." message="Please try again later."/>;
+        return (
+            <ResultPage variant="error">
+                <ResultPageHeader>Failed to load orders.</ResultPageHeader>
+                <ResultPageMessage>Please try again later.</ResultPageMessage>
+            </ResultPage>
+        );
+    }
+
+    if (!orders || orders.length === 0) {
+        return (
+            <ResultPage variant="info">
+                <ResultPageHeader>No previous orders</ResultPageHeader>
+                <ResultPageMessage>You haven't placed any orders yet.</ResultPageMessage>
+                <ResultPageActions>
+                    <Link to="/"><Button className="w-full">Start Shopping</Button></Link>
+                </ResultPageActions>
+            </ResultPage>
+        );
     }
 
     return (
-        <div className="flex flex-col items-center w-full">
-            <div className="w-full max-w-[500px]">
-                <div className="flex justify-between items-center mb-4">
-                    <h1 className="text-2xl font-bold">Orders</h1>
-                </div>
-                {orders.length > 0 ? (
-                    orders.map((order) => <OrderCard key={order.id} order={order} />)
-                ) : (
-                    <p className="text-center text-muted-foreground mt-6">No previous orders.</p>
-                )}
-            </div>
-        </div>
+        <UserPageLayout title="Orders">
+            {orders.map((order) => (
+                <OrderCard key={order.id} order={order} />
+            ))}
+        </UserPageLayout>
     );
 }

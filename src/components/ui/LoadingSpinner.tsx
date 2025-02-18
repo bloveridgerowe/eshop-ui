@@ -1,4 +1,5 @@
 import { cn } from "@/utilities/utils"
+import { ReactNode } from "react";
 
 export interface LoadingSpinnerProps {
   className?: string
@@ -16,9 +17,19 @@ export const LoadingSpinner = ({ className }: LoadingSpinnerProps) => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={cn("animate-spin", className)}
+      className={cn("animate-spin text-muted-foreground w-10 h-10", className)}
     >
       <path d="M21 12a9 9 0 1 1-6.219-8.56" />
     </svg>
+  );
+}
+
+export interface LoadingSpinnerContainerProps {
+  children: ReactNode;
+  className?: string }
+
+export function LoadingSpinnerContainer({ children, className }:LoadingSpinnerContainerProps ) {
+  return (
+      <div className={`flex justify-center ${className || ""}`}>{children}</div>
   );
 }

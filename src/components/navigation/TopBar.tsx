@@ -8,14 +8,14 @@ import { LoginModal } from "@/components/modals/LoginModal";
 import { useAuth } from "@/hooks/use-auth";
 
 export function TopBar() {
-    console.log("TopBar Render");
-
     const navigate = useNavigate();
     const { user } = useAuth();
     const [ searchTerm, setSearchTerm ] = useState("");
 
     const handleSearch = () => {
-        if (!searchTerm.trim()) return;
+        if (!searchTerm.trim()) {
+            return;
+        }
         navigate(Paths.searchProducts(searchTerm));
     };
 
