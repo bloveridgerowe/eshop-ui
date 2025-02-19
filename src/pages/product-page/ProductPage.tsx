@@ -8,7 +8,7 @@ import { useGetProduct } from "@/api/hooks/product-hooks";
 import { AddToBasketButton } from "@/pages/product-page/components/AddToBasketButton";
 import { Paths } from "@/utilities/paths";
 import { Button } from "@/components/shadcn/button";
-import { ResultPage, ResultPageHeader, ResultPageMessage, ResultPageActions } from "@/pages/result-pages/ResultPage";
+import { ResultPage, ResultPageHeader, ResultPageMessage, ResultPageActions } from "@/pages/result-page/ResultPage";
 
 export function ProductPage() {
     const { id } = useParams();

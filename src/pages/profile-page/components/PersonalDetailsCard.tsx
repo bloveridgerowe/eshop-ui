@@ -5,7 +5,7 @@ import { useUpdateName } from "@/api/hooks/customer-hooks";
 import { errorMessage } from "@/utilities/errors";
 import { useState } from "react";
 import { useToast } from "@/components/shadcn/use-toast";
-import { ProfileCard } from "./ProfileCard";
+import { ProfileCard } from "@/pages/profile-page/components/ProfileCard";
 import { useAuth } from "@/hooks/use-auth";
 
 export function PersonalDetailsCard() {

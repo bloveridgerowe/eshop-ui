@@ -1,8 +1,8 @@
 import { LoadingSpinner, LoadingSpinnerContainer } from "@/components/ui/LoadingSpinner";
 import { useAuth } from "@/hooks/use-auth";
-import { PersonalDetailsCard } from "./components/PersonalDetailsCard";
-import { CardDetailsCard } from "./components/CardDetailsCard";
-import { ChangePasswordCard } from "./components/ChangePasswordCard";
+import { PersonalDetailsCard } from "@/pages/profile-page/components/PersonalDetailsCard";
+import { CardDetailsCard } from "@/pages/profile-page/components/CardDetailsCard";
+import { ChangePasswordCard } from "@/pages/profile-page/components/ChangePasswordCard";
 import { AddressCard } from "@/pages/profile-page/components/AddressCard";
 import { LogoutButton } from "@/pages/profile-page/components/LogoutButton";
 import { UserPageLayout } from "@/layouts/UserPageLayout";

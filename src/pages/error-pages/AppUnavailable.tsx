@@ -1,4 +1,4 @@
-import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/result-pages/ResultPage";
+import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/result-page/ResultPage";
 
 export function AppUnavailable() {
     return (

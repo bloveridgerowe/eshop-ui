@@ -4,7 +4,7 @@ import { ProductCard } from "@/pages/browse-products-page/components/ProductCard
 import { LoadingSpinner, LoadingSpinnerContainer } from "@/components/ui/LoadingSpinner";
 import { Paths } from "@/utilities/paths";
 import { useGetProducts } from "@/api/hooks/product-hooks";
-import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/result-pages/ResultPage";
+import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/result-page/ResultPage";
 import { useAuth } from "@/hooks/use-auth";
 
 export function BrowseProductsPage() {
@@ -51,7 +51,7 @@ export function BrowseProductsPage() {
 
     return (
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 gap-4 w-full">
-            {products.map((product) => (
+            {products.map(product => (
                 <ProductCard key={product.id} product={product} loggedIn={!!user} />
             ))}
         </div>

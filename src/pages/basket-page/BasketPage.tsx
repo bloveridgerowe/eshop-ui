@@ -4,7 +4,7 @@ import { UserPageLayout } from "@/layouts/UserPageLayout";
 import { ClearBasketButton } from "@/pages/basket-page/components/ClearBasketButton";
 import { BasketItemCard } from "@/pages/basket-page/components/BasketItemCard";
 import { PlaceOrderButton } from "@/pages/basket-page/components/PlaceOrderButton";
-import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/result-pages/ResultPage";
+import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/result-page/ResultPage";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/shadcn/button";
 
@@ -42,7 +42,7 @@ export function BasketPage() {
 
     return (
         <UserPageLayout title="Basket" titleButton={<ClearBasketButton/>}>
-            {basketItems.map((item) => (
+            {basketItems.map(item => (
                 <BasketItemCard key={item.productId} item={item}/>
             ))}
             <PlaceOrderButton/>

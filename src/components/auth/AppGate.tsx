@@ -3,11 +3,11 @@ import { ReactNode } from "react";
 import { AppUnavailable } from "@/pages/error-pages/AppUnavailable";
 import { ConditionalDisplay } from "@/components/utilities/ConditionalDisplay.tsx";
 
-export interface AuthResolverProps {
+export interface AppGateProps {
     children: ReactNode;
 }
 
-export function AppGate({ children }: AuthResolverProps) {
+export function AppGate({ children }: AppGateProps) {
     const { isLoading, isError, status } = useAuth();
 
     console.log({ component: "AppGate", isLoading, isError, status });
