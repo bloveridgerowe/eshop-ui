@@ -68,23 +68,20 @@ export function ProductCard({ product, loggedIn }: ProductCardProps) {
 export function ProductCardSkeleton() {
     return (
         <Card>
-            {/* Image Placeholder */}
             <div className="aspect-square relative">
-                <Skeleton className="w-full h-full rounded-t-lg" />
+                <Skeleton className="w-full h-full rounded-t-lg object-cover" />
             </div>
-            {/* Content Placeholder */}
             <CardContent className="p-2 flex flex-col flex-1 gap-1">
-                <Skeleton className="h-4 w-3/4 my-1" /> {/* Title */}
+                <Skeleton className="h-4 w-1/2 my-1" />
                 <div className="flex justify-between items-center">
-                    <Skeleton className="h-4 w-1/4" /> {/* Price */}
-                    <Skeleton className="h-4 w-1/4" /> {/* Stock */}
+                    <Skeleton className="h-4 w-1/4" />
+                    <Skeleton className="h-4 w-1/3" />
                 </div>
             </CardContent>
-            {/* Footer Placeholder */}
             <CardFooter className="p-2 flex-col gap-2">
                 <div className="flex items-center gap-2 w-full">
-                    <Skeleton className="w-20 h-8" /> {/* Quantity Dropdown */}
-                    <Skeleton className="h-9 w-full" /> {/* Add to Basket Button */}
+                    <Skeleton className="w-20 h-9" />
+                    <Skeleton className="h-9 flex-1" />
                 </div>
             </CardFooter>
         </Card>
