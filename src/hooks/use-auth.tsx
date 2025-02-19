@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { queryKeys } from "@/api/hooks/query-keys";
 import { getCustomerDetails } from "@/api/services/customer-service";
+import { ApiError } from "@/api/api-client.ts";
 
 export function useAuth() {
     const { data: user, isLoading, isError, status } = useQuery({
@@ -11,8 +11,7 @@ export function useAuth() {
                 return await getCustomerDetails();
             }
             catch (error) {
-                console.log(error);
-                if (error instanceof AxiosError && error.response?.status === 401) {
+                if (error instanceof ApiError && error.status === 401) {
                     return null;
                 }
                 throw error;
