@@ -11,6 +11,7 @@ export function useAuth() {
                 return await getCustomerDetails();
             }
             catch (error) {
+                console.log(error);
                 if (error instanceof AxiosError && error.response?.status === 401) {
                     return null;
                 }
