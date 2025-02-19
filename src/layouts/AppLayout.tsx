@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { TopBar } from "@/components/navigation/TopBar";
 import { MobileTopBar } from "@/components/navigation/MobileTopBar";
-import { CategoriesSideBar } from "@/components/navigation/CategoriesSidebar";
+import { CategoriesSideBar } from "@/components/navigation/categories-sidebar/CategoriesSidebar.tsx";
 import { MobileCategoriesRow } from "@/components/navigation/MobileCategoriesRow";
 
 type AppLayoutProps = {

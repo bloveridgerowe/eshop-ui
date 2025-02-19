@@ -34,7 +34,7 @@ export function useMaximumVisibleGridItems() {
             const cardHeight = firstChild.getBoundingClientRect().height;
 
             if (cardHeight > 0) {
-                const rows = Math.floor(availableHeight / cardHeight);
+                const rows = Math.ceil(availableHeight / cardHeight);
                 setVisibleItems(columns * rows);
             }
         };
