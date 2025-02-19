@@ -8,6 +8,7 @@ export interface AppGateProps {
 }
 
 export function AppGate({ children }: AppGateProps) {
+    console.log("APP GATE")
     const { user, isLoading, isError, status } = useAuth();
 
     console.log({ component: "AppGate", user, isLoading, isError, status });

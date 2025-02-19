@@ -10,6 +10,7 @@ import { Paths } from "@/utilities/paths";
 import { OrderPlacedPage } from "@/pages/order-placed-page/OrderPlacedPage";
 
 export function AppRoutes() {
+    console.log("APP ROUTES")
     return (
         <Routes>
             <Route path="/" element={<Navigate to={Paths.featured()} replace />} />

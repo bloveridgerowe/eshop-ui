@@ -9,6 +9,8 @@ type AppLayoutProps = {
 };
 
 export function AppLayout({ displayCategories }: AppLayoutProps) {
+    console.log("APPLAYOUT")
+
     return (
         <div className="flex flex-col min-h-dvh">
             <div className="hidden md:flex">
