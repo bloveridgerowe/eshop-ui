@@ -1,9 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useSuspenseQuery} from "@tanstack/react-query";
 import { queryKeys } from "@/api/hooks/query-keys";
 import { addToBasket, clearBasket, deleteItemFromBasket, getItemsInBasket, updateQuantityInBasket } from "@/api/services/basket-service";
 
 export function useGetBasketItems() {
-    return useQuery({
+    return useSuspenseQuery({
         queryKey: queryKeys.basket,
         queryFn: getItemsInBasket,
         staleTime: 60 * 1000

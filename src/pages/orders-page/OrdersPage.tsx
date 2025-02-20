@@ -1,32 +1,14 @@
-import { LoadingSpinner, LoadingSpinnerContainer } from "@/components/ui/LoadingSpinner";
 import { OrderCard } from "@/pages/orders-page/components/OrderCard";
 import { useGetOrders } from "@/api/hooks/order-hooks";
-import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/result-page/ResultPage";
+import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/shadcn/button";
 import { UserPageLayout } from "@/layouts/UserPageLayout";
 
 export function OrdersPage() {
-    const { data: orders, isPending, isError } = useGetOrders();
+    const { data: orders } = useGetOrders();
 
-    if (isPending) {
-        return (
-            <LoadingSpinnerContainer>
-                <LoadingSpinner/>
-            </LoadingSpinnerContainer>
-        );
-    }
-
-    if (isError) {
-        return (
-            <ResultPage variant="error">
-                <ResultPageHeader>Failed to load orders.</ResultPageHeader>
-                <ResultPageMessage>Please try again later.</ResultPageMessage>
-            </ResultPage>
-        );
-    }
-
-    if (!orders || orders.length === 0) {
+    if (orders.length === 0) {
         return (
             <ResultPage variant="info">
                 <ResultPageHeader>No previous orders</ResultPageHeader>

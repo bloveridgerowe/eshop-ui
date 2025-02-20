@@ -5,7 +5,7 @@ export interface LoadingSpinnerProps {
   className?: string
 }
 
-export const LoadingSpinner = ({ className }: LoadingSpinnerProps) => {
+export const Spinner = ({ className }: LoadingSpinnerProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
