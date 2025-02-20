@@ -1,24 +1,25 @@
 import { useAuth } from "@/hooks/use-auth";
 import { ReactNode } from "react";
 import { AppUnavailable } from "@/pages/error-pages/AppUnavailable";
-import { ConditionalDisplay } from "@/components/utilities/ConditionalDisplay.tsx";
+import { ConditionalDisplay } from "@/components/utilities/ConditionalDisplay";
 
 export interface AppGateProps {
     children: ReactNode;
 }
 
 export function AppGate({ children }: AppGateProps) {
-    const { user, isLoading, isError, status } = useAuth();
+    const { isLoading: isAuthLoading, isError: isAuthError, status: authStatus } = useAuth();
 
-    console.log({ component: "AppGate", user, isLoading, isError, status });
+    console.log({ hook: "useAuth", isAuthLoading, authStatus });
 
-    if (isError) {
+
+    if (isAuthError ) {
         return (
             <AppUnavailable/>
         );
     }
 
     return (
-        <ConditionalDisplay visible={!isLoading} content={children}/>
+        <ConditionalDisplay visible={!isAuthLoading} content={children}/>
     );
 }

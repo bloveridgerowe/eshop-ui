@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { queryKeys } from "@/api/hooks/query-keys";
 import { getProduct, getProducts } from "@/api/services/products-service";
 
@@ -35,9 +35,9 @@ export function useGetProducts({ searchQuery, categoryId }: { searchQuery?: stri
 
     const { queryKey, queryParams } = getProductsQueryConfig();
 
-    return useQuery({
+    return useSuspenseQuery({
         queryKey,
         queryFn: () => getProducts(queryParams),
-        staleTime: 60 * 1000,
+        staleTime: 60 * 1000
     });
 }

@@ -7,6 +7,7 @@ import { getStockDisplay } from "@/utilities/stock";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
 import { Paths } from "@/utilities/paths";
 import { AddToBasketButton } from "@/pages/browse-products-page/components/AddToBasketButton";
+import { Skeleton } from "@/components/shadcn/skeleton";
 
 export interface ProductCardProps {
     product: Product;
@@ -58,6 +59,29 @@ export function ProductCard({ product, loggedIn }: ProductCardProps) {
                         </div>
                     )}
                     <AddToBasketButton productId={product.id} quantity={quantity} loggedIn={loggedIn}/>
+                </div>
+            </CardFooter>
+        </Card>
+    );
+}
+
+export function ProductCardSkeleton() {
+    return (
+        <Card>
+            <div className="aspect-square relative">
+                <Skeleton className="w-full h-full rounded-t-lg object-cover" />
+            </div>
+            <CardContent className="p-2 flex flex-col flex-1 gap-1">
+                <Skeleton className="h-4 w-1/2 my-1" />
+                <div className="flex justify-between items-center">
+                    <Skeleton className="h-4 w-1/4" />
+                    <Skeleton className="h-4 w-1/3" />
+                </div>
+            </CardContent>
+            <CardFooter className="p-2 flex-col gap-2">
+                <div className="flex items-center gap-2 w-full">
+                    <Skeleton className="w-20 h-9" />
+                    <Skeleton className="h-9 flex-1" />
                 </div>
             </CardFooter>
         </Card>
