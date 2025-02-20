@@ -4,7 +4,7 @@ import { useGetOrders } from "@/api/hooks/order-hooks";
 import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/result-page/ResultPage";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/shadcn/button";
-import { UserPageLayout } from "@/layouts/UserPageLayout.tsx";
+import { UserPageLayout } from "@/layouts/UserPageLayout";
 
 export function OrdersPage() {
     const { data: orders, isPending, isError } = useGetOrders();

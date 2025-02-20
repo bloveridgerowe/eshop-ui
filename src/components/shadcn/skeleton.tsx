@@ -1,4 +1,4 @@
-import {cn} from "@/utilities/utils.ts";
+import { cn } from "@/utilities/utils.ts";
 
 function Skeleton({
   className,

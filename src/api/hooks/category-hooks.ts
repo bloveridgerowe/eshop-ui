@@ -1,4 +1,4 @@
-import { useSuspenseQuery} from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { getCategories } from "@/api/services/category-service";
 import { queryKeys } from "@/api/hooks/query-keys";
 

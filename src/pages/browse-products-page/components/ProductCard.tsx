@@ -7,7 +7,7 @@ import { getStockDisplay } from "@/utilities/stock";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
 import { Paths } from "@/utilities/paths";
 import { AddToBasketButton } from "@/pages/browse-products-page/components/AddToBasketButton";
-import { Skeleton } from "@/components/shadcn/skeleton.tsx";
+import { Skeleton } from "@/components/shadcn/skeleton";
 
 export interface ProductCardProps {
     product: Product;
