@@ -53,7 +53,7 @@ export function BasketItemCard({ item }: BasketItemCardProps) {
                         +
                     </Button>
                 </div>
-                <Button variant="destructive" size="sm" onClick={() => handleRemoveItem(item.productId)}>
+                <Button variant="default" size="sm" onClick={() => handleRemoveItem(item.productId)}>
                     Remove
                 </Button>
             </CardContent>

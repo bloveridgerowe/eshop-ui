@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { TopBar } from "@/components/navigation/TopBar";
-import { MobileTopBar } from "@/components/navigation/MobileTopBar";
+import { TopBar } from "@/components/navigation/top-bar/TopBar.tsx";
+import { MobileTopBar } from "@/components/navigation/top-bar/MobileTopBar.tsx";
 import { CategoriesSideBar } from "@/components/navigation/categories-sidebar/CategoriesSidebar";
 import { MobileCategoriesRow } from "@/components/navigation/mobile-categories-row/MobileCategoriesRow";
 
@@ -9,6 +9,7 @@ type AppLayoutProps = {
 };
 
 export function AppLayout({ displayCategories }: AppLayoutProps) {
+    console.log("Rendering AppLayout");
     return (
         <div className="flex flex-col min-h-dvh">
             <div className="hidden md:flex">
@@ -35,3 +36,5 @@ export function AppLayout({ displayCategories }: AppLayoutProps) {
         </div>
     );
 }
+
+AppLayout.whyDidYouRender = true;

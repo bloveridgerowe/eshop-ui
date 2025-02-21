@@ -18,7 +18,7 @@ export function ClearBasketButton() {
     };
 
     return (
-        <Button variant="default" onClick={handleClearBasket} disabled={isClearingBasket} className="gap-2">
+        <Button variant="destructive" onClick={handleClearBasket} disabled={isClearingBasket} className="gap-2">
             <Trash2 className="h-4 w-4" />
             {isClearingBasket ? "Clearing basket..." : "Clear Basket"}
         </Button>

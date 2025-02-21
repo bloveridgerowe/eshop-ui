@@ -1,5 +1,5 @@
 import { Component, ReactNode } from "react";
-import {SomethingWentWrong} from "@/pages/status-pages/SomethingWentWrong.tsx";
+import { SomethingWentWrong } from "@/pages/status-pages/SomethingWentWrong.tsx";
 
 interface ErrorBoundaryProps {
     children: ReactNode;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {Spinner} from "@/components/ui/Spinner.tsx";
+import { Spinner } from "@/components/ui/Spinner.tsx";
 
 interface CenteredSpinnerProps {
     delay?: number;

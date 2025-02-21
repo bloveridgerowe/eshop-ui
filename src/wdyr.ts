@@ -6,5 +6,6 @@ if (process.env.NODE_ENV === 'development') {
         trackAllPureComponents: true,
         trackHooks: true,
         logOwnerReasons: true,
+        logOnDifferentValues: true
     });
 }

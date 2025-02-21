@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient, useSuspenseQuery} from "@tanstack/react-query";
+import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { queryKeys } from "@/api/hooks/query-keys";
 import { addToBasket, clearBasket, deleteItemFromBasket, getItemsInBasket, updateQuantityInBasket } from "@/api/services/basket-service";
 

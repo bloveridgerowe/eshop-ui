@@ -59,7 +59,7 @@ export function LoginModal() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button>
+                <Button variant="secondary">
                     <LogIn className="h-4 w-4 mr-2" />
                     Login
                 </Button>

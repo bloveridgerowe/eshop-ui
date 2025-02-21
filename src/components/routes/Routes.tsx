@@ -8,7 +8,7 @@ import { OrdersPage } from "@/pages/orders-page/OrdersPage";
 import { BasketPage } from "@/pages/basket-page/BasketPage";
 import { Paths } from "@/utilities/paths";
 import { OrderPlacedPage } from "@/pages/order-placed-page/OrderPlacedPage";
-import {CenteredSpinner} from "@/pages/utility-pages/CenteredSpinner.tsx";
+import { CenteredSpinner } from "@/pages/utility-pages/CenteredSpinner.tsx";
 import { Suspense } from "react";
 
 export function AppRoutes() {

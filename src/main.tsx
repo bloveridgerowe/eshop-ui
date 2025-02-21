@@ -10,8 +10,8 @@ import { queryClient } from '@/api/query-client'
 import { ErrorBoundary } from "@/components/utilities/ErrorBoundary.tsx";
 import { Suspense } from "react";
 import { AuthProvider } from "@/components/utilities/AuthProvider.tsx";
-import {AppLoading} from "@/pages/status-pages/AppLoading.tsx";
-import {AppUnavailable} from "@/pages/status-pages/AppUnavailable.tsx";
+import { AppLoading } from "@/pages/status-pages/AppLoading.tsx";
+import { AppUnavailable } from "@/pages/status-pages/AppUnavailable.tsx";
 
 createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
@@ -28,3 +28,4 @@ createRoot(document.getElementById('root')!).render(
         </ErrorBoundary>
     </QueryClientProvider>
 )
+

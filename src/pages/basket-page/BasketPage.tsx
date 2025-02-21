@@ -1,5 +1,5 @@
 import { useGetBasketItems } from "@/api/hooks/basket-hooks";
-import { UserPageLayout } from "@/layouts/UserPageLayout";
+import { UserPageContent } from "@/layouts/UserPageContent.tsx";
 import { ClearBasketButton } from "@/pages/basket-page/components/ClearBasketButton";
 import { BasketItemCard } from "@/pages/basket-page/components/BasketItemCard";
 import { PlaceOrderButton } from "@/pages/basket-page/components/PlaceOrderButton";
@@ -23,11 +23,11 @@ export function BasketPage() {
     }
 
     return (
-        <UserPageLayout title="Basket" titleButton={<ClearBasketButton/>}>
+        <UserPageContent title="Basket" titleButton={<ClearBasketButton/>}>
             {basketItems.map(item => (
                 <BasketItemCard key={item.productId} item={item}/>
             ))}
             <PlaceOrderButton/>
-        </UserPageLayout>
+        </UserPageContent>
     );
 }
