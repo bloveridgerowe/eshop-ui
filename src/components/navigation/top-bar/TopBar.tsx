@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Store, Search, User, Package, ShoppingCart } from "lucide-react";
-import { Button } from "@/components/shadcn/button.tsx";
-import { Input } from "@/components/shadcn/input.tsx";
+import { Button } from "@/components/shadcn/button";
+import { Input } from "@/components/shadcn/input";
 import { Paths } from "@/utilities/paths.ts";
 import { useState } from "react";
-import { LoginModal } from "@/components/modals/LoginModal.tsx";
-import { useAuth } from "@/components/utilities/AuthProvider.tsx"
-import { NavIconButton } from "@/components/NavButton.tsx";
+import { LoginModal } from "@/components/modals/LoginModal";
+import { useAuth } from "@/components/utilities/AuthProvider"
+import { NavIconButton } from "@/components/ui/NavButton";
 
 export function TopBar() {
     const navigate = useNavigate();

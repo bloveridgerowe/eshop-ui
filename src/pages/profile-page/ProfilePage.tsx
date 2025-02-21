@@ -1,14 +1,14 @@
-import { Spinner, LoadingSpinnerContainer } from "@/components/ui/Spinner.tsx";
+import { Spinner, LoadingSpinnerContainer } from "@/components/ui/Spinner";
 import { PersonalDetailsCard } from "@/pages/profile-page/components/PersonalDetailsCard";
 import { CardDetailsCard } from "@/pages/profile-page/components/CardDetailsCard";
 import { ChangePasswordCard } from "@/pages/profile-page/components/ChangePasswordCard";
 import { AddressCard } from "@/pages/profile-page/components/AddressCard";
 import { LogoutButton } from "@/pages/profile-page/components/LogoutButton";
-import { UserPageContent } from "@/layouts/UserPageContent.tsx";
+import { UserPageContent } from "@/layouts/UserPageContent";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Paths } from "@/utilities/paths";
-import { useAuth } from "@/components/utilities/AuthProvider.tsx";
+import { useAuth } from "@/components/utilities/AuthProvider";
 
 export function ProfilePage() {
     const navigate = useNavigate();

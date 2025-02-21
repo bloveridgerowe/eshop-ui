@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Paths } from "@/utilities/paths";
-import { ProductCard } from "@/pages/product-page/components/Product.tsx";
+import { ProductCard } from "@/pages/product-page/components/Product";
 
 export function ProductPage() {
     const { id } = useParams();

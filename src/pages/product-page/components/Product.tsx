@@ -1,12 +1,12 @@
-import { Card, CardContent } from "@/components/shadcn/card.tsx";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select.tsx";
-import { AddToBasketButton } from "@/pages/product-page/components/AddToBasketButton.tsx";
+import { Card, CardContent } from "@/components/shadcn/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
+import { AddToBasketButton } from "@/pages/product-page/components/AddToBasketButton";
 import { useEffect, useState } from "react";
 import { useGetProduct } from "@/api/hooks/product-hooks.ts";
 import { Link } from "react-router-dom";
-import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage.tsx";
+import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
 import { Paths } from "@/utilities/paths.ts";
-import { Button } from "@/components/shadcn/button.tsx";
+import { Button } from "@/components/shadcn/button";
 import { getStockDisplay } from "@/utilities/stock.ts";
 
 interface ProductCardProps {

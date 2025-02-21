@@ -3,7 +3,7 @@ import { useGetOrders } from "@/api/hooks/order-hooks";
 import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/shadcn/button";
-import { UserPageContent } from "@/layouts/UserPageContent.tsx";
+import { UserPageContent } from "@/layouts/UserPageContent";
 
 export function OrdersPage() {
     const { data: orders } = useGetOrders();

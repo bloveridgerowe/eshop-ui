@@ -6,7 +6,7 @@ import { errorMessage } from "@/utilities/errors";
 import { useState } from "react";
 import { useToast } from "@/components/shadcn/use-toast";
 import { ProfileCard } from "@/pages/profile-page/components/ProfileCard";
-import { useAuth } from "@/components/utilities/AuthProvider.tsx"
+import { useAuth } from "@/components/utilities/AuthProvider"
 
 export function CardDetailsCard() {
     const { user } = useAuth();

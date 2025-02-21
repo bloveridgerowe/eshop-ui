@@ -1,5 +1,5 @@
 import { useGetBasketItems } from "@/api/hooks/basket-hooks";
-import { UserPageContent } from "@/layouts/UserPageContent.tsx";
+import { UserPageContent } from "@/layouts/UserPageContent";
 import { ClearBasketButton } from "@/pages/basket-page/components/ClearBasketButton";
 import { BasketItemCard } from "@/pages/basket-page/components/BasketItemCard";
 import { PlaceOrderButton } from "@/pages/basket-page/components/PlaceOrderButton";

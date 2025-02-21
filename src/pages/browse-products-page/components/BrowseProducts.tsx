@@ -1,4 +1,4 @@
-import { useAuth } from "@/components/utilities/AuthProvider.tsx"
+import { useAuth } from "@/components/utilities/AuthProvider"
 import { useSearchParams } from "react-router-dom";
 import { useGetProducts } from "@/api/hooks/product-hooks.ts";
 import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";

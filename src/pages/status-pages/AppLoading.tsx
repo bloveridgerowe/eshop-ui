@@ -1,4 +1,4 @@
-import { CenteredSpinner } from "@/pages/utility-pages/CenteredSpinner.tsx";
+import { CenteredSpinner } from "@/pages/utility-pages/CenteredSpinner";
 
 export function AppLoading() {
     return (

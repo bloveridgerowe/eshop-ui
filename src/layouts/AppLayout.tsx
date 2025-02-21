@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { TopBar } from "@/components/navigation/top-bar/TopBar.tsx";
-import { MobileTopBar } from "@/components/navigation/top-bar/MobileTopBar.tsx";
+import { TopBar } from "@/components/navigation/top-bar/TopBar";
+import { MobileTopBar } from "@/components/navigation/top-bar/MobileTopBar";
 import { CategoriesSideBar } from "@/components/navigation/categories-sidebar/CategoriesSidebar";
 import { MobileCategoriesRow } from "@/components/navigation/mobile-categories-row/MobileCategoriesRow";
 
