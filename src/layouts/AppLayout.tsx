@@ -35,3 +35,7 @@ export function AppLayout({ displayCategories }: AppLayoutProps) {
         </div>
     );
 }
+
+AppLayout.whyDidYouRender = {
+
+};

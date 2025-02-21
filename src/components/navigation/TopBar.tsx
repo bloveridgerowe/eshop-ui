@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import { User, ShoppingCart, Package, Store, Search } from "lucide-react";
+import {  Store, Search } from "lucide-react";
 import { Button } from "@/components/shadcn/button";
 import { Input } from "@/components/shadcn/input";
 import { Paths } from "@/utilities/paths";
-import { useState } from "react";
+import { useState} from "react";
 import { LoginModal } from "@/components/modals/LoginModal";
 import { useAuth } from "@/components/utilities/AuthProvider.tsx"
+import {NavIconButton} from "@/components/NavButton.tsx";
 
 export function TopBar() {
     const navigate = useNavigate();
@@ -46,15 +47,9 @@ export function TopBar() {
             <div className="flex w-full justify-between md:w-auto md:justify-normal gap-2">
                 {user ? (
                     <>
-                        <Link to={Paths.profile()}>
-                            <Button><User size={16} className="mr-1" />Profile</Button>
-                        </Link>
-                        <Link to={Paths.basket()}>
-                            <Button><ShoppingCart size={16} className="mr-1" />Basket</Button>
-                        </Link>
-                        <Link to={Paths.orders()}>
-                            <Button><Package size={16} className="mr-1" />Orders</Button>
-                        </Link>
+                        <NavIconButton to={Paths.profile()} icon="user" label="Profile"/>
+                        <NavIconButton to={Paths.basket()} icon="shopping-cart" label="Basket"/>
+                        <NavIconButton to={Paths.orders()} icon="package" label="Orders"/>
                     </>
                 ) : (
                     <LoginModal />
@@ -63,3 +58,4 @@ export function TopBar() {
         </div>
     );
 }
+

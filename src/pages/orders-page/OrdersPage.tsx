@@ -3,7 +3,7 @@ import { useGetOrders } from "@/api/hooks/order-hooks";
 import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/shadcn/button";
-import { UserPageLayout } from "@/layouts/UserPageLayout";
+import { UserPageContent } from "@/layouts/UserPageContent.tsx";
 
 export function OrdersPage() {
     const { data: orders } = useGetOrders();
@@ -21,10 +21,10 @@ export function OrdersPage() {
     }
 
     return (
-        <UserPageLayout title="Orders">
+        <UserPageContent title="Orders">
             {orders.map(order => (
                 <OrderCard key={order.id} order={order} />
             ))}
-        </UserPageLayout>
+        </UserPageContent>
     );
 }

@@ -4,7 +4,7 @@ import { CardDetailsCard } from "@/pages/profile-page/components/CardDetailsCard
 import { ChangePasswordCard } from "@/pages/profile-page/components/ChangePasswordCard";
 import { AddressCard } from "@/pages/profile-page/components/AddressCard";
 import { LogoutButton } from "@/pages/profile-page/components/LogoutButton";
-import { UserPageLayout } from "@/layouts/UserPageLayout";
+import { UserPageContent } from "@/layouts/UserPageContent.tsx";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Paths } from "@/utilities/paths";
@@ -29,11 +29,11 @@ export function ProfilePage() {
     }
 
     return (
-        <UserPageLayout title="Profile Settings" titleButton={<LogoutButton />}>
+        <UserPageContent title="Profile Settings" titleButton={<LogoutButton />}>
             <PersonalDetailsCard />
             <AddressCard />
             <CardDetailsCard />
             <ChangePasswordCard />
-        </UserPageLayout>
+        </UserPageContent>
     );
 }

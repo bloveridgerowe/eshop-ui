@@ -12,6 +12,7 @@ import {CenteredSpinner} from "@/pages/utility-pages/CenteredSpinner.tsx";
 import { Suspense } from "react";
 
 export function AppRoutes() {
+    console.log("APP ROUTES");
     return (
         <Suspense fallback={<CenteredSpinner delay={1000}/>}>
             <Routes>

@@ -6,7 +6,7 @@ interface UserPageLayoutProps {
     children: ReactNode;
 }
 
-export function UserPageLayout({ title, titleButton, children }: UserPageLayoutProps) {
+export function UserPageContent({ title, titleButton, children }: UserPageLayoutProps) {
     return (
         <div className="flex flex-col items-center w-full">
             <div className="w-full max-w-[500px]">
