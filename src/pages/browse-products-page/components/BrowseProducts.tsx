@@ -1,7 +1,7 @@
-import { useAuth } from "@/hooks/use-auth";
+import { useAuth } from "@/components/utilities/AuthProvider.tsx"
 import { useSearchParams } from "react-router-dom";
 import { useGetProducts } from "@/api/hooks/product-hooks.ts";
-import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/result-page/ResultPage";
+import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
 import { ProductGrid } from "@/pages/browse-products-page/components/ProductGrid";
 import { ProductCard, ProductCardSkeleton } from "@/pages/browse-products-page/components/ProductCard";
 import { useMaximumVisibleGridItems } from "@/hooks/use-maximum-visible-grid-items";

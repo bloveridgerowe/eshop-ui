@@ -18,8 +18,8 @@ export function BrowseProductsPage() {
     }, [searchQuery, categoryId, searchParams, navigate]);
 
     return (
-        <Suspense key={searchQuery || categoryId || "featured"} fallback={<BrowseProductsSkeleton />}>
-            <BrowseProducts />
+        <Suspense fallback={<BrowseProductsSkeleton />}>
+            <BrowseProducts/>
         </Suspense>
     );
 }

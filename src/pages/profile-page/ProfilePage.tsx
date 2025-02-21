@@ -1,5 +1,4 @@
-import { LoadingSpinner, LoadingSpinnerContainer } from "@/components/ui/LoadingSpinner";
-import { useAuth } from "@/hooks/use-auth";
+import { Spinner, LoadingSpinnerContainer } from "@/components/ui/Spinner.tsx";
 import { PersonalDetailsCard } from "@/pages/profile-page/components/PersonalDetailsCard";
 import { CardDetailsCard } from "@/pages/profile-page/components/CardDetailsCard";
 import { ChangePasswordCard } from "@/pages/profile-page/components/ChangePasswordCard";
@@ -9,6 +8,7 @@ import { UserPageLayout } from "@/layouts/UserPageLayout";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Paths } from "@/utilities/paths";
+import { useAuth } from "@/components/utilities/AuthProvider.tsx";
 
 export function ProfilePage() {
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ export function ProfilePage() {
     if (isLoading) {
         return (
             <LoadingSpinnerContainer className="p-4 border-r border-input">
-                <LoadingSpinner/>
+                <Spinner/>
             </LoadingSpinnerContainer>
         );
     }

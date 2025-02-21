@@ -8,24 +8,28 @@ import { OrdersPage } from "@/pages/orders-page/OrdersPage";
 import { BasketPage } from "@/pages/basket-page/BasketPage";
 import { Paths } from "@/utilities/paths";
 import { OrderPlacedPage } from "@/pages/order-placed-page/OrderPlacedPage";
+import {CenteredSpinner} from "@/pages/utility-pages/CenteredSpinner.tsx";
+import { Suspense } from "react";
 
 export function AppRoutes() {
     return (
-        <Routes>
-            <Route path="/" element={<Navigate to={Paths.featured()} replace />} />
-            <Route element={<AppLayout displayCategories={true} />}>
-                <Route path={Paths.categories()} element={<BrowseProductsPage />} />
-                <Route path={Paths.product()} element={<ProductPage />} />
-            </Route>
-            <Route element={<ProtectedRoute />}>
-                <Route element={<AppLayout displayCategories={false} />}>
-                    <Route path={Paths.profile()} element={<ProfilePage />} />
-                    <Route path={Paths.orderPlaced()} element={<OrderPlacedPage />} />
-                    <Route path={Paths.orders()} element={<OrdersPage />} />
-                    <Route path={Paths.basket()} element={<BasketPage />} />
+        <Suspense fallback={<CenteredSpinner delay={1000}/>}>
+            <Routes>
+                <Route path="/" element={<Navigate to={Paths.featured()} replace />} />
+                <Route element={<AppLayout displayCategories={true} />}>
+                    <Route path={Paths.categories()} element={<BrowseProductsPage />} />
+                    <Route path={Paths.product()} element={<ProductPage />} />
                 </Route>
-            </Route>
-        </Routes>
+                <Route element={<ProtectedRoute />}>
+                    <Route element={<AppLayout displayCategories={false} />}>
+                        <Route path={Paths.profile()} element={<ProfilePage />} />
+                        <Route path={Paths.orderPlaced()} element={<OrderPlacedPage />} />
+                        <Route path={Paths.orders()} element={<OrdersPage />} />
+                        <Route path={Paths.basket()} element={<BasketPage />} />
+                    </Route>
+                </Route>
+            </Routes>
+        </Suspense>
     );
 }
 

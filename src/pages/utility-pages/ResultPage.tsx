@@ -1,8 +1,8 @@
-import { CheckCircle2, XCircle, Info } from "lucide-react";
+import { CheckCircle2, XCircle, Info, TriangleAlert } from "lucide-react";
 import { ReactNode } from "react";
 
 export interface ResultPageProps {
-    variant: "success" | "error" | "info";
+    variant: "success" | "error" | "info" | "warning"; // ⬅️ Added "warning"
     children: ReactNode;
     className?: string;
 }
@@ -14,6 +14,8 @@ export function ResultPage({ variant, children, className }: ResultPageProps) {
                 <CheckCircle2 className="h-16 w-16 mx-auto text-green-500" />
             ) : variant === "error" ? (
                 <XCircle className="h-16 w-16 mx-auto text-red-500" />
+            ) : variant === "warning" ? (
+                <TriangleAlert className="h-16 w-16 mx-auto text-orange-500" />
             ) : (
                 <Info className="h-16 w-16 mx-auto text-blue-500" />
             )}
@@ -24,7 +26,7 @@ export function ResultPage({ variant, children, className }: ResultPageProps) {
 
 export interface ResultComponentProps {
     children: ReactNode;
-    className?: string
+    className?: string;
 }
 
 export function ResultPageHeader({ children, className }: ResultComponentProps) {

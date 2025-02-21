@@ -5,7 +5,7 @@ import { Input } from "@/components/shadcn/input";
 import { Paths } from "@/utilities/paths";
 import { useState } from "react";
 import { LoginModal } from "@/components/modals/LoginModal";
-import { useAuth } from "@/hooks/use-auth";
+import { useAuth } from "@/components/utilities/AuthProvider.tsx";
 
 export function MobileTopBar() {
     const [ searchTerm, setSearchTerm ] = useState("");

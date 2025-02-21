@@ -1,9 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { getOrders, placeOrder } from "@/api/services/order-service";
 import { queryKeys } from "@/api/hooks/query-keys";
 
 export function useGetOrders() {
-    return useQuery({
+    return useSuspenseQuery({
         queryKey: queryKeys.orders,
         queryFn: getOrders,
         staleTime: 60 * 1000,

@@ -1,5 +1,5 @@
 import { useLocation, Link } from "react-router-dom";
-import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/result-page/ResultPage";
+import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
 import { Button } from "@/components/shadcn/button";
 
 export function OrderPlacedPage() {
