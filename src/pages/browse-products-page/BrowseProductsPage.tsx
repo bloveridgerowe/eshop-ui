@@ -1,74 +1,58 @@
-import { useNavigate, useSearchParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import { Paths } from "@/utilities/paths";
-import {useGetProducts} from "@/api/hooks/product-hooks.ts";
-import {ResultPage, ResultPageHeader, ResultPageMessage} from "@/pages/utility-pages/ResultPage.tsx";
-import {Filters, ProductsFilters} from "@/components/feature/ProductsFilters.tsx";
-import {ProductsBrowser} from "@/pages/browse-products-page/components/ProductsBrowser.tsx";
-import {filter, maxBy, minBy} from "lodash";
+// src/pages/browse-products-page/BrowseProductsPage.tsx
+import { useGetProducts } from "@/api/hooks/product-hooks";
+import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
+import { ProductsFilters } from "@/components/feature/ProductsFilters";
+import { ProductsBrowser } from "@/pages/browse-products-page/components/ProductsBrowser";
+import {useFilters} from "@/hooks/use-filters.tsx";
+import {useEffect} from "react";
 
 export function BrowseProductsPage() {
-    const navigate = useNavigate();
-    const [searchParams] = useSearchParams();
-    const searchQuery = searchParams.get("search") || undefined;
-    const categoryId = searchParams.get("category") || undefined;
-    const { data: products, isLoading, isError } = useGetProducts({ searchQuery, categoryId });
+    // Get global filter state and updater from our context.
+    const { filters, setFilters } = useFilters();
 
-    const [filters, setFilters] = useState<Filters>({
-        priceRange: { minPrice: 0, maxPrice: Infinity },
+    // Call our query hook with filters.
+    // (Assume useGetProducts accepts an object with categoryId and priceRange.)
+    const { data: products, isLoading, isError } = useGetProducts({
+        // Optionally include searchQuery if stored globally
+        categoryId: filters.categoryId,
+        minPrice: filters.priceRange.minPrice,
+        maxPrice: filters.priceRange.maxPrice,
     });
 
     useEffect(() => {
-        if (products && products.length > 0) {
-            const newMinPrice = minBy(products, p => p.price)?.price ?? 0;
-            const newMaxPrice = maxBy(products, p => p.price)?.price ?? Infinity;
-
-            setFilters(prev => ({
-                ...prev,
-                priceRange: { minPrice: newMinPrice, maxPrice: newMaxPrice },
-            }));
+        if (products && products.length > 0 &&
+            filters.priceRange.minPrice === 0 &&
+            filters.priceRange.maxPrice === Infinity) {
+            const prices = products.map((p) => p.price);
+            const newMin = Math.min(...prices);
+            const newMax = Math.max(...prices);
+            setFilters({
+                ...filters,
+                priceRange: { minPrice: newMin, maxPrice: newMax },
+            });
         }
-    }, [ products ]);
+    }, [products, filters, setFilters]);
 
-    useEffect(() => {
-        const hasValidParams = searchQuery || categoryId || searchParams.has("featured");
-
-        if (!hasValidParams) {
-            navigate(Paths.featured(), { replace: true });
-        }
-    }, [ searchQuery, categoryId, searchParams, navigate ]);
-
-    const filteredProducts = filter(products, p => p.price >= filters.priceRange.minPrice && p.price <= filters.priceRange.maxPrice);
-
-    const handleFiltersChanged = (newFilters: Filters) => {
+    const handleFiltersChanged = (newFilters: typeof filters) => {
         setFilters(newFilters);
+        // With React Query, updating filters (i.e. the query key) triggers a refetch.
     };
 
-    const renderProducts = () => {
-        if (isError) {
-            return (
-                <ResultPage variant="error">
-                    <ResultPageHeader>Failed to load products.</ResultPageHeader>
-                    <ResultPageMessage>Please try again later.</ResultPageMessage>
-                </ResultPage>
-            );
-        }
-
+    if (isError) {
         return (
-            <>
-                <ProductsFilters filters={filters} onFiltersChanged={handleFiltersChanged} />
-                <div className="flex-1">
-                    <ProductsBrowser products={filteredProducts} showSkeleton={isLoading} />
-                </div>
-            </>
+            <ResultPage variant="error">
+                <ResultPageHeader>Failed to load products.</ResultPageHeader>
+                <ResultPageMessage>Please try again later.</ResultPageMessage>
+            </ResultPage>
         );
-    };
+    }
 
     return (
         <div className="flex-1 flex flex-col md:flex-row items-stretch">
-            {renderProducts()}
+            <ProductsFilters filters={filters} onFiltersChanged={handleFiltersChanged} />
+            <div className="flex-1">
+                <ProductsBrowser products={products} showSkeleton={isLoading} />
+            </div>
         </div>
     );
 }
-
-

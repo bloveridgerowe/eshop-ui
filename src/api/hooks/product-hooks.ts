@@ -10,7 +10,15 @@ export function useGetProduct(id: string) {
     });
 }
 
-export function useGetProducts({ searchQuery, categoryId }: { searchQuery?: string; categoryId?: string; }) {
+interface useGetProductsParams {
+    searchQuery?: string;
+    categoryId?: string;
+    minPrice?: number;
+    maxPrice?: number;
+}
+
+export function useGetProducts({ searchQuery, categoryId, minPrice, maxPrice }: useGetProductsParams) {
+    // TODO: Fix this
     function getProductsQueryConfig() {
         if (searchQuery) {
             return {
