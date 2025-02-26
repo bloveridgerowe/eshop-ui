@@ -1,24 +1,13 @@
 import { Outlet } from "react-router-dom";
-import { TopBar } from "@/components/navigation/top-bar/TopBar";
-import { CategoriesSideBar } from "@/components/navigation/categories-sidebar/CategoriesSidebar";
+import {TopBar} from "@/components/navigation/top-bar/TopBar.tsx";
 
-type AppLayoutProps = {
-    displayCategories: boolean;
-};
-
-export function AppLayout({ displayCategories }: AppLayoutProps) {
-    console.log("Rendering AppLayout");
+export function AppLayout() {
     return (
         <div className="min-h-screen flex flex-col">
             <TopBar />
-            <div className="flex-1 flex flex-col md:flex-row items-stretch">
-                <CategoriesSideBar />
-                <main className="flex-1">
-                    <Outlet />
-                </main>
+            <div className="flex-1">
+                <Outlet />
             </div>
         </div>
     );
 }
-
-AppLayout.whyDidYouRender = true;
