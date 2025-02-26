@@ -1,19 +1,19 @@
-import { Card, CardContent } from "@/components/shadcn/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
+import { Card, CardContent } from "@/components/ui/card.tsx";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
 import { AddToBasketButton } from "@/pages/product-page/components/AddToBasketButton";
 import { useEffect, useState } from "react";
 import { useGetProduct } from "@/api/hooks/product-hooks.ts";
 import { Link } from "react-router-dom";
 import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
 import { Paths } from "@/utilities/paths.ts";
-import { Button } from "@/components/shadcn/button";
+import { Button } from "@/components/ui/button.tsx";
 import { getStockDisplay } from "@/utilities/stock.ts";
 
-interface ProductCardProps {
+interface ProductDetailsCardProps {
     id: string;
 }
 
-export function ProductCard({ id }: ProductCardProps) {
+export function ProductDetailsCard({ id }: ProductDetailsCardProps) {
     const [quantity, setQuantity] = useState(1);
     const { data: product } = useGetProduct(id);
 

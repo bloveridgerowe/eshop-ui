@@ -1,13 +1,13 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Paths } from "@/utilities/paths"
-import { Alert, AlertDescription } from "@/components/shadcn/alert";
-import { Button } from "@/components/shadcn/button";
-import { Label } from "@/components/shadcn/label";
-import { Input } from "@/components/shadcn/input";
-import { Separator } from "@/components/shadcn/separator";
+import { Alert, AlertDescription } from "@/components/ui/alert.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import { Label } from "@/components/ui/label.tsx";
+import { Input } from "@/components/ui/input.tsx";
+import { Separator } from "@/components/ui/separator.tsx";
 import { LogIn, UserPlus } from "lucide-react";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/shadcn/dialog";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog.tsx";
 import { errorMessage } from "@/utilities/errors";
 import { useLogin, useRegister, useDemoLogin } from "@/api/hooks/customer-hooks";
 

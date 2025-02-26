@@ -1,26 +1,30 @@
 import { Link, useSearchParams } from "react-router-dom";
 import { useGetCategories } from "@/api/hooks/category-hooks.ts";
 import { getCategoryItems } from "@/utilities/categories.ts";
-import { Button } from "@/components/shadcn/button";
-import { Star } from "lucide-react";
-import { Skeleton } from "@/components/shadcn/skeleton";
+import { Button } from "@/components/ui/button.tsx";
+import {Banknote, Star} from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton.tsx";
 
-export function CategoriesSideBarList() {
+export function ProductsFilters() {
     const [searchParams] = useSearchParams();
     const { data: categories } = useGetCategories();
     const selectedCategoryId = searchParams.get("category");
     const isFeatured = searchParams.has("featured");
 
+    // TODO: Loading skeleton
 
     return (
         <aside className="w-full py-2 md:w-48 flex flex-col border-b md:border-r mb-2 md:mb-0 gap-2 border-input">
             <section className="px-2 flex flex-row md:flex-col w-full overflow-x-auto md:overflow-visible border-b pb-2">
-                <div className="w-full flex flex-col bg-secondary p-2 rounded">
-                    <label className="mb-2 font-semibold text-gray-800">Price Range</label>
-                    <div className="flex items-center space-x-2">
-                        <span className="text-sm text-gray-600">$0</span>
+                <div className="w-full h-12 flex flex-col bg-secondary p-2 rounded justify-center">
+                    {/*<div className="flex flex-row items-center justify-center gap-2 mb-1.5">*/}
+                    {/*    <Banknote className="w-[1.1rem] h-[1.1rem]"/>*/}
+                    {/*    <label className="">Price Range</label>*/}
+                    {/*</div>*/}
+                    <div className="flex items-center space-x-2 mx-1">
+                        <span className="text-sm text-gray-600">£0</span>
                         <input type="range" min="0" max="1000" value="500" className="w-full"/>
-                        <span className="text-sm text-gray-600">$1000</span>
+                        <span className="text-sm">£1000</span>
                     </div>
                 </div>
             </section>

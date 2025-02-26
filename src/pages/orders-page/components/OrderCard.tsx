@@ -1,5 +1,5 @@
 import { OrderDetails, OrderStatus } from "@/api/services/order-service";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/shadcn/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.tsx";
 import { format } from "date-fns";
 
 export interface OrderCardProps {

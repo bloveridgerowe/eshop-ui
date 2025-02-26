@@ -1,20 +1,19 @@
-import { Card, CardContent, CardFooter } from "@/components/shadcn/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card.tsx";
 import { cn } from "@/utilities/utils";
 import { Product } from "@/api/services/products-service";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { getStockDisplay } from "@/utilities/stock";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
 import { Paths } from "@/utilities/paths";
 import { AddToBasketButton } from "@/pages/browse-products-page/components/AddToBasketButton";
-import { Skeleton } from "@/components/shadcn/skeleton";
+import { Skeleton } from "@/components/ui/skeleton.tsx";
 
-export interface ProductCardProps {
+export interface ProductListingCardProps {
     product: Product;
-    loggedIn: boolean;
 }
 
-export function ProductCard({ product, loggedIn }: ProductCardProps) {
+export function ProductListingCard({ product }: ProductListingCardProps) {
     const [ quantity, setQuantity ] = useState(product.stock > 0 ? 1 : 0);
     const stockInfo = getStockDisplay(product);
     const quantityOptions = Array.from({ length: product.stock }, (_, i) => i + 1);
@@ -58,7 +57,7 @@ export function ProductCard({ product, loggedIn }: ProductCardProps) {
                             </Select>
                         </div>
                     )}
-                    <AddToBasketButton productId={product.id} quantity={quantity} loggedIn={loggedIn}/>
+                    <AddToBasketButton productId={product.id} quantity={quantity}/>
                 </div>
             </CardFooter>
         </Card>

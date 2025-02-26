@@ -1,6 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
-import { Button } from "@/components/shadcn/button";
+import { Button } from "@/components/ui/button.tsx";
 
 export function OrderPlacedPage() {
     const location = useLocation();

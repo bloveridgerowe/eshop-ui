@@ -1,21 +1,21 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { ProtectedRoute } from "@/components/routes/ProtectedRoute";
-import { BrowseProductsPage } from "@/pages/browse-products-page/BrowseProductsPage";
-import { ProductPage } from "@/pages/product-page/ProductPage";
+import { ProtectedRoute } from "@/routes/ProtectedRoute.tsx";
+import { BrowseProductsPage } from "@/pages/browse-products-page/BrowseProductsPage.tsx";
+import { ProductPage } from "@/pages/product-page/ProductPage.tsx";
 import { ProductsLayout } from "@/layouts/ProductsLayout.tsx";
-import { ProfilePage } from "@/pages/profile-page/ProfilePage";
-import { OrdersPage } from "@/pages/orders-page/OrdersPage";
-import { BasketPage } from "@/pages/basket-page/BasketPage";
-import { Paths } from "@/utilities/paths";
-import { OrderPlacedPage } from "@/pages/order-placed-page/OrderPlacedPage";
-import { CenteredSpinner } from "@/pages/utility-pages/CenteredSpinner";
+import { ProfilePage } from "@/pages/profile-page/ProfilePage.tsx";
+import { OrdersPage } from "@/pages/orders-page/OrdersPage.tsx";
+import { BasketPage } from "@/pages/basket-page/BasketPage.tsx";
+import { Paths } from "@/utilities/paths.ts";
+import { OrderPlacedPage } from "@/pages/order-placed-page/OrderPlacedPage.tsx";
+import { LoadingSpinnerPage } from "@/pages/utility-pages/LoadingSpinnerPage.tsx";
 import { Suspense } from "react";
 import { UserLayout } from "@/layouts/UserLayout.tsx";
 import { AppLayout } from "@/layouts/AppLayout.tsx";
 
 export function AppRoutes() {
     return (
-        <Suspense fallback={<CenteredSpinner delay={1000}/>}>
+        <Suspense fallback={<LoadingSpinnerPage delay={1000}/>}>
             <Routes>
                 <Route path="/" element={<AppLayout/>}>
                     <Route index element={<Navigate to={Paths.featured()} replace />} />

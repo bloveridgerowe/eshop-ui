@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Paths } from "@/utilities/paths";
-import { ProductCard } from "@/pages/product-page/components/Product";
+import { ProductDetailsCard } from "@/pages/product-page/components/ProductDetailsCard.tsx";
 
 export function ProductPage() {
     const { id } = useParams();
@@ -13,7 +13,7 @@ export function ProductPage() {
 
     return (
         <div className="flex items-center justify-center">
-            <ProductCard id={id} />
+            <ProductDetailsCard id={id} />
         </div>
     );
 }

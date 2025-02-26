@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Spinner } from "@/components/ui/Spinner";
 
-interface CenteredSpinnerProps {
+interface LoadingSpinnerPageProps {
     delay?: number;
 }
 
-export function CenteredSpinner({ delay }: CenteredSpinnerProps) {
+export function LoadingSpinnerPage({ delay }: LoadingSpinnerPageProps) {
     const [showSpinner, setShowSpinner] = useState(false);
 
     useEffect(() => {

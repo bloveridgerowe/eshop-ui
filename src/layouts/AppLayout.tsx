@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import {TopBar} from "@/components/navigation/top-bar/TopBar.tsx";
+import {TopBar} from "@/components/feature/TopBar.tsx";
 
 export function AppLayout() {
     return (

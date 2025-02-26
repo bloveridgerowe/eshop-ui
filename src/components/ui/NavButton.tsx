@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "@/components/shadcn/button";
+import { Button, ButtonProps } from "@/components/ui/button.tsx";
 import { NavLink, Link, To } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 

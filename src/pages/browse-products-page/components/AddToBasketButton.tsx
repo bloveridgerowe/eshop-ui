@@ -1,20 +1,21 @@
 import { ShoppingCart } from "lucide-react";
-import { Button } from "@/components/shadcn/button";
+import { Button } from "@/components/ui/button.tsx";
 import { useAddToBasket } from "@/api/hooks/basket-hooks";
-import { useToast } from "@/components/shadcn/use-toast";
+import { useToast } from "@/components/ui/use-toast.ts";
+import {useAuth} from "@/components/utilities/AuthProvider.tsx";
 
 export interface AddToBasketButtonProps {
     productId: string;
     quantity: number;
-    loggedIn: boolean;
 }
 
-export function AddToBasketButton({ productId, quantity, loggedIn }: AddToBasketButtonProps) {
+export function AddToBasketButton({ productId, quantity }: AddToBasketButtonProps) {
+    const { user } = useAuth();
     const { successToast, errorToast } = useToast();
     const { mutateAsync: addToBasket, isPending } = useAddToBasket();
 
     const handleAddToBasket = async () => {
-        if (!loggedIn) {
+        if (!user) {
             errorToast("You need to be signed in to add items to your basket.");
             return;
         }

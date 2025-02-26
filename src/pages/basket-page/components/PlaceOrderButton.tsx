@@ -1,10 +1,10 @@
-import { Button } from "@/components/shadcn/button";
+import { Button } from "@/components/ui/button.tsx";
 import { ShoppingCart } from "lucide-react";
 import { usePlaceOrder } from "@/api/hooks/order-hooks";
 import { Paths } from "@/utilities/paths";
 import { errorMessage } from "@/utilities/errors";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "@/components/shadcn/use-toast";
+import { useToast } from "@/components/ui/use-toast.ts";
 
 export function PlaceOrderButton() {
     const navigate = useNavigate();

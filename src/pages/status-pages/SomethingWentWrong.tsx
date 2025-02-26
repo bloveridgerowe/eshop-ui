@@ -1,5 +1,5 @@
 import { ResultPage, ResultPageHeader, ResultPageMessage, ResultPageActions } from "@/pages/utility-pages/ResultPage";
-import { Button } from "@/components/shadcn/button";
+import { Button } from "@/components/ui/button.tsx";
 
 export function SomethingWentWrong() {
     return (

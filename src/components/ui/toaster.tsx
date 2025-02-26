@@ -1,10 +1,10 @@
-import { useToast } from "@/components/shadcn/use-toast"
+import { useToast } from "@/components/ui/use-toast.ts"
 import { Toast,
   ToastClose,
   ToastDescription,
   ToastProvider,
   ToastTitle,
-  ToastViewport, } from "@/components/shadcn/toast"
+  ToastViewport, } from "@/components/ui/toast.tsx"
 
 export function Toaster() {
   const { toasts } = useToast()

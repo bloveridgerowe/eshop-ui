@@ -2,8 +2,8 @@ import '@/wdyr';
 import '@/index.css'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import { AppRoutes } from '@/components/routes/Routes'
-import { Toaster } from '@/components/shadcn/toaster';
+import { AppRoutes } from '@/routes/Routes'
+import { Toaster } from '@/components/ui/toaster.tsx';
 import { QueryClientProvider } from "@tanstack/react-query";
 import { DisclaimerModal } from "@/components/modals/DisclaimerModal"
 import { queryClient } from '@/api/query-client'
