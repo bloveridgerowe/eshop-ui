@@ -10,8 +10,8 @@ interface IconButtonProps extends ButtonProps {
 export function IconButton({ icon: Icon, label, ...rest }: IconButtonProps) {
     return (
         <Button {...rest}>
-            <Icon size={16} className={label && "mr-1"} />
-            {label}
+            <Icon size={16} className={label && "md:mr-1"} />
+            <span className="hidden md:flex">{label}</span>
         </Button>
     );
 }

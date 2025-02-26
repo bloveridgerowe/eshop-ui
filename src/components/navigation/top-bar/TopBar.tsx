@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Store, Search, User, Package, ShoppingCart } from "lucide-react";
+import { Store, User, Package, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/shadcn/button";
 import { Input } from "@/components/shadcn/input";
 import { Paths } from "@/utilities/paths.ts";
@@ -21,30 +21,24 @@ export function TopBar() {
     };
 
     return (
-        <div className="flex w-full flex-shrink-0 gap-2 md:gap-0 border-b border-input flex-col md:flex-row justify-between items-center p-2">
-            <div>
-                <Link className="flex items-center gap-2" to={Paths.featured()}>
-                    <Button>
-                        <Store size={24} />
-                        <span>EShop</span>
-                    </Button>
-                </Link>
-            </div>
-            <div className="flex-1 max-w-lg mx-8 flex items-center border border-input rounded-lg">
+        <header className="flex flex-wrap items-center border-b border-input">
+            <Link className="p-2 order-1 md:order-1 mr-auto" to={Paths.featured()}>
+                <Button>
+                    <Store size={24} />
+                    <span>EShop</span>
+                </Button>
+            </Link>
+            <div className="p-2 order-3 md:order-2 w-full md:flex-1 flex justify-center border-t">
                 <Input
                     type="text"
                     placeholder="Search"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                    className="flex-1 border-none focus:ring-0 focus:outline-none bg-transparent"
+                    className="w-full p-2 md:max-w-xl"
                 />
-                <div className="w-px self-stretch bg-border"></div>
-                <Button variant="ghost" size="icon" onClick={handleSearch}>
-                    <Search className="text-muted-foreground" size={18}/>
-                </Button>
             </div>
-            <div className="flex w-full justify-between md:w-auto md:justify-normal gap-2">
+            <div className="p-2 order-2 md:order-3 ml-auto flex space-x-2">
                 {user ? (
                     <>
                         <NavIconButton to={Paths.profile()} icon={User} label="Profile" />
@@ -55,7 +49,7 @@ export function TopBar() {
                     <LoginModal />
                 )}
             </div>
-        </div>
+        </header>
     );
 }
 

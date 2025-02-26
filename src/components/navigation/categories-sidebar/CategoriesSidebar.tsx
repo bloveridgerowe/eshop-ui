@@ -3,10 +3,10 @@ import { CategoriesSideBarList, CategoriesSideBarListSkeleton } from "@/componen
 
 export function CategoriesSideBar() {
 	return (
-		<div className="overflow-y-auto border-r border-input p-2 min-w-[var(--desktop-categories-width)]">
+		<>
 			<Suspense fallback={<CategoriesSideBarListSkeleton />}>
 				<CategoriesSideBarList />
 			</Suspense>
-		</div>
+		</>
 	);
 }

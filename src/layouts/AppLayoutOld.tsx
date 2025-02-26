@@ -9,13 +9,17 @@ type AppLayoutProps = {
 export function AppLayout({ displayCategories }: AppLayoutProps) {
     console.log("Rendering AppLayout");
     return (
-        <div className="min-h-screen flex flex-col">
-            <TopBar />
-            <div className="flex-1 flex flex-col md:flex-row items-stretch">
-                <CategoriesSideBar />
-                <main className="flex-1">
+        <div className="flex flex-col min-h-dvh">
+            <div className="hidden md:flex">
+                <TopBar />
+            </div>
+            <div className="flex flex-1">
+                <div className="hidden md:flex">
+                    <CategoriesSideBar />
+                </div>
+                <div className="flex-1 p-2">
                     <Outlet />
-                </main>
+                </div>
             </div>
         </div>
     );
