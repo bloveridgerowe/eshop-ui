@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "@/routes/ProtectedRoute.tsx";
 import { BrowseProductsPage } from "@/pages/browse-products-page/BrowseProductsPage.tsx";
 import { ProductPage } from "@/pages/product-page/ProductPage.tsx";
-import { ProductsLayout } from "@/layouts/ProductsLayout.tsx";
 import { ProfilePage } from "@/pages/profile-page/ProfilePage.tsx";
 import { OrdersPage } from "@/pages/orders-page/OrdersPage.tsx";
 import { BasketPage } from "@/pages/basket-page/BasketPage.tsx";
@@ -19,10 +18,8 @@ export function AppRoutes() {
             <Routes>
                 <Route path="/" element={<AppLayout/>}>
                     <Route index element={<Navigate to={Paths.featured()} replace />} />
-                    <Route element={<ProductsLayout/>}>
-                        <Route path={Paths.categories()} element={<BrowseProductsPage />} />
-                        <Route path={Paths.product()} element={<ProductPage />} />
-                    </Route>
+                    <Route path={Paths.categories()} element={<BrowseProductsPage />} />
+                    <Route path={Paths.product()} element={<ProductPage />} />
                     <Route element={<ProtectedRoute/>}>
                         <Route element={<UserLayout/>}>
                             <Route path={Paths.profile()} element={<ProfilePage />} />

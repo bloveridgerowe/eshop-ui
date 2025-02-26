@@ -64,7 +64,7 @@ export function ProductListingCard({ product }: ProductListingCardProps) {
     );
 }
 
-export function ProductCardSkeleton() {
+export function ProductListingCardSkeleton() {
     return (
         <Card>
             <div className="aspect-square relative">
