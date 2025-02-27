@@ -4,25 +4,26 @@ import { cn } from "@/utilities/utils.ts";
 import { Slider } from "../ui/slider";
 
 export interface PriceControlProps {
-    minValue: number;
-    maxValue: number;
+    availableMin: number;
+    availableMax: number;
+    value: [number, number]; // current selection
     onChange: (minValue: number, maxValue: number) => void;
 }
 
-export function PriceControl({ minValue, maxValue, onChange }: PriceControlProps) {
-    const [localValues, setLocalValues] = useState([minValue, maxValue]);
+export function PriceControl({ availableMin, availableMax, value, onChange }: PriceControlProps) {
+    const [localValues, setLocalValues] = useState<[number, number]>(value);
 
-    // When props change, update local state so the slider reflects the new boundaries.
+    // Sync local state when the incoming value changes.
     useEffect(() => {
-        setLocalValues([minValue, maxValue]);
-    }, [minValue, maxValue]);
+        setLocalValues(value);
+    }, [value]);
 
-    // Debounce the onChange callback to prevent spamming the server.
+    // Debounce the onChange callback.
     const debouncedOnChange = useRef(
-        debounce((newValues: number[]) => onChange(newValues[0], newValues[1]), 250)
+        debounce((newValues: [number, number]) => onChange(newValues[0], newValues[1]), 250)
     ).current;
 
-    const handleValueChange = (newValues: number[]) => {
+    const handleValueChange = (newValues: [number, number]) => {
         setLocalValues(newValues);
         debouncedOnChange(newValues);
     };
@@ -39,9 +40,9 @@ export function PriceControl({ minValue, maxValue, onChange }: PriceControlProps
             <span className="hidden md:inline order-2 text-sm text-gray-600 md:mb-2">–</span>
             <span className="order-3 text-sm text-gray-600 md:mb-2">£{localValues[1]}</span>
             <Slider
-                value={localValues} // Controlled value from local state
-                min={minValue}
-                max={maxValue}
+                value={localValues}
+                min={availableMin}
+                max={availableMax}
                 step={1}
                 onValueChange={handleValueChange}
                 className={cn("w-full slider-black order-2 md:order-4 md:w-full")}

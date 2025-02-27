@@ -1,29 +1,31 @@
 // src/contexts/FiltersContext.tsx
-import { createContext, useContext, useState, ReactNode } from "react";
+import {createContext, useContext, useState, ReactNode, Dispatch, SetStateAction} from "react";
 
 export interface PriceRange {
-    minPrice: number;
-    maxPrice: number;
+    min: number;
+    max: number;
 }
 
 export interface Filters {
-    priceRange: PriceRange;
+    priceBoundaries: PriceRange; // computed from products (available range)
+    priceSelection: PriceRange;  // the user's selected range for filtering
     categoryId?: string;
-    // (optionally, you could include searchQuery here if needed)
 }
 
 interface FiltersContextProps {
     filters: Filters;
-    setFilters: (filters: Filters) => void;
+    setFilters: Dispatch<SetStateAction<Filters>>;
 }
 
 const FiltersContext = createContext<FiltersContextProps | undefined>(undefined);
 
 export const FiltersProvider = ({ children }: { children: ReactNode }) => {
     const [filters, setFilters] = useState<Filters>({
-        priceRange: { minPrice: 0, maxPrice: Infinity },
+        priceBoundaries: { min: 0, max: Infinity },
+        priceSelection: { min: 0, max: Infinity },
         categoryId: undefined,
     });
+
     return (
         <FiltersContext.Provider value={{ filters, setFilters }}>
             {children}
