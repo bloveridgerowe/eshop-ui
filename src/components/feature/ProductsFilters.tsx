@@ -34,7 +34,7 @@ export function ProductsFilters({ filters, onFiltersChanged }: ProductsFiltersPr
     const handleCategoryClick = (categoryId: string) => {
         onFiltersChanged({
             selection: filters.priceSelection,
-            categoryId: filters.categoryId === categoryId ? undefined : categoryId,
+            categoryId: categoryId,
         });
     };
 

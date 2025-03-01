@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import {useLayoutEffect, useMemo, useState} from "react";
 import { useGetProducts } from "@/api/hooks/product-hooks";
 import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
 import {PriceRange, ProductsFilters } from "@/components/feature/ProductsFilters";
@@ -13,25 +13,29 @@ export function BrowseProductsPage() {
     // We always pass the boundaries (for filtering the query) to the server.
     const { data, isLoading, isError } = useGetProducts({
         categoryId,
-        minPrice: boundaries.min,
-        maxPrice: boundaries.max,
+        minPrice: selection.min,
+        maxPrice: selection.max,
     });
 
-    // When the query returns data, update the boundaries once.
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (data && data.priceRange) {
-            // Update boundaries to the correct values from the server.
-            setBoundaries({
-                min: data.priceRange.min,
-                max: data.priceRange.max,
-            });
-            // Optionally, if the user hasn't adjusted the slider yet, also update the selection.
-            setSelection({
-                min: data.priceRange.min,
-                max: data.priceRange.max,
-            });
+            const newBoundaries = { min: data.priceRange.min, max: data.priceRange.max };
+
+            // If the boundaries have changed...
+            if (newBoundaries.min !== boundaries.min || newBoundaries.max !== boundaries.max) {
+                setBoundaries(newBoundaries);
+
+                // Only update selection if it hasn't diverged from the previous boundaries.
+                setSelection(prevSelection => {
+                    if (prevSelection.min === boundaries.min && prevSelection.max === boundaries.max) {
+                        return newBoundaries;
+                    }
+                    return prevSelection;
+                });
+            }
+            // Category is not touched here—so it stays as the user last set it.
         }
-    }, [data]);
+    }, [data, boundaries]);
 
     // Local filtering based on the user's selection. (If you need to filter client-side.)
     const filteredProducts = useMemo(() => {
@@ -54,7 +58,11 @@ export function BrowseProductsPage() {
     const handleFiltersChanged = (newFilters: { selection: PriceRange; categoryId?: string }) => {
         // Only update the selection and category; boundaries remain unchanged.
         setSelection(newFilters.selection);
-        setCategoryId(newFilters.categoryId);
+
+        if (newFilters.categoryId) {
+            setCategoryId(newFilters.categoryId);
+        }
+
     };
 
     return (
