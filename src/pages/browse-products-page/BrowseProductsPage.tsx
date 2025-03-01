@@ -40,9 +40,7 @@ export function BrowseProductsPage() {
     // Local filtering based on the user's selection. (If you need to filter client-side.)
     const filteredProducts = useMemo(() => {
         if (!data?.products) return [];
-        return data.products.filter(
-            (p) => p.price >= selection.min && p.price <= selection.max
-        );
+        return data.products.filter(p => p.price >= selection.min && p.price <= selection.max);
     }, [data, selection]);
 
     if (isError) {
@@ -62,7 +60,6 @@ export function BrowseProductsPage() {
         if (newFilters.categoryId) {
             setCategoryId(newFilters.categoryId);
         }
-
     };
 
     return (
