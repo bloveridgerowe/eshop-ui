@@ -1,15 +1,23 @@
-// src/components/feature/ProductsFilters.tsx
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 import { PriceControl } from "@/components/feature/PriceControl";
 import { useGetCategories } from "@/api/hooks/category-hooks";
 import { getCategoryItems } from "@/utilities/categories";
-import {Filters} from "@/hooks/use-filters.tsx";
 
+export interface PriceRange {
+    min: number;
+    max: number;
+}
+
+export interface FiltersProps {
+    priceBoundaries: PriceRange;
+    priceSelection: PriceRange;
+    categoryId?: string;
+}
 
 export interface ProductsFiltersProps {
-    filters: Filters;
-    onFiltersChanged: (filters: Filters) => void;
+    filters: FiltersProps;
+    onFiltersChanged: (filters: { selection: PriceRange; categoryId?: string }) => void;
 }
 
 export function ProductsFilters({ filters, onFiltersChanged }: ProductsFiltersProps) {
@@ -18,15 +26,14 @@ export function ProductsFilters({ filters, onFiltersChanged }: ProductsFiltersPr
 
     const handlePriceChange = (minValue: number, maxValue: number) => {
         onFiltersChanged({
-            ...filters,
-            // Only update the selection; the boundaries remain based on the results.
-            priceSelection: { min: minValue, max: maxValue },
+            selection: { min: minValue, max: maxValue },
+            categoryId: filters.categoryId,
         });
     };
 
     const handleCategoryClick = (categoryId: string) => {
         onFiltersChanged({
-            ...filters,
+            selection: filters.priceSelection,
             categoryId: filters.categoryId === categoryId ? undefined : categoryId,
         });
     };

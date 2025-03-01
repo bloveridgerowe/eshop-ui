@@ -18,33 +18,9 @@ interface useGetProductsParams {
 }
 
 export function useGetProducts({ searchQuery, categoryId, minPrice, maxPrice }: useGetProductsParams) {
-    // TODO: Fix this
-    function getProductsQueryConfig() {
-        if (searchQuery) {
-            return {
-                queryKey: queryKeys.searchProducts(searchQuery),
-                queryParams: { searchQuery, categoryId: undefined, isFeatured: false },
-            };
-        }
-        else if (categoryId) {
-            return {
-                queryKey: queryKeys.productsByCategory(categoryId),
-                queryParams: { searchQuery: undefined, categoryId, isFeatured: false },
-            };
-        }
-        else {
-            return {
-                queryKey: queryKeys.featuredProducts(),
-                queryParams: { searchQuery: undefined, categoryId: undefined, isFeatured: true },
-            };
-        }
-    }
-
-    const { queryKey, queryParams } = getProductsQueryConfig();
-
     return useQuery({
-        queryKey,
-        queryFn: () => getProducts(queryParams),
+        queryKey: ["products", { searchQuery, categoryId, minPrice, maxPrice } ],
+        queryFn: () => getProducts({ searchQuery, categoryId, minPrice, maxPrice }),
         staleTime: 60 * 1000
     });
 }

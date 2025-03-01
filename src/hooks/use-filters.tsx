@@ -21,8 +21,8 @@ const FiltersContext = createContext<FiltersContextProps | undefined>(undefined)
 
 export const FiltersProvider = ({ children }: { children: ReactNode }) => {
     const [filters, setFilters] = useState<Filters>({
-        priceBoundaries: { min: 0, max: Infinity },
-        priceSelection: { min: 0, max: Infinity },
+        priceBoundaries: { min: 0, max: 1005 },
+        priceSelection: { min: 0, max: 1005 },
         categoryId: undefined,
     });
 
