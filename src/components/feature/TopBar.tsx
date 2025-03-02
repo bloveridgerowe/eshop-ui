@@ -12,7 +12,7 @@ import {useProductFilters} from "@/hooks/use-filters.tsx";
 export function TopBar() {
     const navigate = useNavigate();
     const { user } = useAuth();
-    const { search } = useProductFilters();
+    const { filters } = useProductFilters();
     const [ searchTerm, setSearchTerm ] = useState("");
 
     const handleSearch = () => {
@@ -26,13 +26,13 @@ export function TopBar() {
     };
 
     useEffect(() => {
-        if (search) {
-            setSearchTerm(search);
+        if (filters.search) {
+            setSearchTerm(filters.search);
         }
         else {
             setSearchTerm("");
         }
-    }, [ search ]);
+    }, [ filters ]);
 
     return (
         <header className="flex flex-wrap items-center border-b border-input">

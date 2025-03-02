@@ -11,12 +11,12 @@ const filterSectionStyles = "flex flex-row md:flex-col w-full gap-2 px-2 overflo
 const filterWrapperStyles = "w-full h-12 md:h-14 flex flex-col bg-secondary p-2 md:pb-3 rounded justify-center";
 
 export function ProductsFilters() {
-    const { priceBoundaries, priceRange } = useProductFilters();
+    const { priceBoundaries, filters } = useProductFilters();
     const { isLoading } = useGetCategories();
 
     return (
         <aside className="w-full py-2 md:w-48 flex flex-col border-b md:border-r mb-2 md:mb-0 gap-2 border-input md:min-w-[200px]">
-            {priceBoundaries && priceRange && !isLoading ? (
+            {priceBoundaries && filters.priceRange && !isLoading ? (
                 <ProductsFiltersList />
             ) : (
                 <ProductsFiltersListSkeleton />
@@ -26,7 +26,7 @@ export function ProductsFilters() {
 }
 
 export function ProductsFiltersList() {
-    const { priceBoundaries, priceRange, category, featured, setFilters } = useProductFilters();
+    const { priceBoundaries, filters, setFilters } = useProductFilters();
     const { data: categories = [] } = useGetCategories();
 
     return (
@@ -36,7 +36,7 @@ export function ProductsFiltersList() {
                     <PriceControl
                         availableMin={priceBoundaries?.min ?? 0}
                         availableMax={priceBoundaries?.max ?? 1}
-                        value={[priceRange?.min ?? 0, priceRange?.max ?? 1]}
+                        value={[filters.priceRange?.min ?? 0, filters.priceRange?.max ?? 1]}
                         onChange={(min, max) => setFilters({ priceRange: { min, max } })}
                     />
                 </div>
@@ -44,9 +44,9 @@ export function ProductsFiltersList() {
             <section className={filterSectionStyles}>
                 <Button
                     key="featured"
-                    variant={featured ? "default" : "secondary"}
+                    variant={filters.featured ? "default" : "secondary"}
                     className="whitespace-nowrap flex items-center gap-2"
-                    onClick={() => setFilters({ featured: !featured, priceRange: undefined })}
+                    onClick={() => setFilters({ featured: !filters.featured, priceRange: undefined })}
                 >
                     <Star className="w-4 h-4" />
                     Featured
@@ -54,7 +54,7 @@ export function ProductsFiltersList() {
                 {categories.map((c) => (
                     <Button
                         key={c.id}
-                        variant={category === c.id ? "default" : "secondary"}
+                        variant={filters.category === c.id ? "default" : "secondary"}
                         className="whitespace-nowrap flex items-center gap-2"
                         onClick={() => setFilters({ category: c.id, priceRange: undefined, search: undefined })}
                     >

@@ -3,13 +3,10 @@ import { useSearchParams } from 'react-router-dom';
 import {PriceRange, ProductFilters} from "@/api/services/products-service.ts";
 
 interface ProductFiltersContextType {
-    search: ProductFilters['search'];
-    category: ProductFilters['category'];
-    featured: ProductFilters['featured'];
-    priceRange?: PriceRange;
+    filters: ProductFilters;
+    setFilters: (filters: ProductFilters) => void;
     priceBoundaries?: PriceRange;
     setPriceBoundaries: (bounds: { min: number; max: number }) => void;
-    setFilters: (filters: ProductFilters) => void;
 }
 
 const ProductFiltersContext = createContext<ProductFiltersContextType | undefined>(undefined);
@@ -22,7 +19,6 @@ export const ProductFiltersProvider = ({ children }: { children: React.ReactNode
     const category = searchParams.get('category') as ProductFilters['category'];
     const minPrice = searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice') as string) : undefined;
     const maxPrice = searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice') as string) : undefined;
-
     const priceRange = minPrice != null && maxPrice != null ? { min: minPrice, max: maxPrice } : undefined;
 
     const setFilters = useCallback((filters: ProductFilters) => {
@@ -53,8 +49,10 @@ export const ProductFiltersProvider = ({ children }: { children: React.ReactNode
         });
     }, [ setSearchParams ]);
 
+    const filters: ProductFilters = { search, featured, priceRange, category };
+
     return (
-        <ProductFiltersContext.Provider value={{ search, featured, category, priceRange, priceBoundaries, setPriceBoundaries, setFilters }}>
+        <ProductFiltersContext.Provider value={{ filters, setFilters, priceBoundaries, setPriceBoundaries }}>
             {children}
         </ProductFiltersContext.Provider>
     );

@@ -6,11 +6,13 @@ import { ProductsBrowser } from "@/pages/browse-products-page/components/Product
 import { useProductFilters } from "@/hooks/use-filters.tsx";
 
 export function BrowseProductsPage() {
-    const { category, priceRange, search, featured, priceBoundaries, setFilters, setPriceBoundaries } = useProductFilters();
-    const { data, isLoading, isError } = useGetProducts({ category, priceRange, search });
+    console.log("BrowseProductsPage");
+
+    const { filters, priceBoundaries, setFilters, setPriceBoundaries } = useProductFilters();
+    const { data, isLoading, isError } = useGetProducts({ category: filters.category, priceRange: filters.priceRange, search: filters.search });
 
     useLayoutEffect(() => {
-        if (!category && !search && !featured) {
+        if (!filters.category && !filters.search && !filters.featured) {
             setFilters({ featured: true });
         }
 
@@ -21,11 +23,11 @@ export function BrowseProductsPage() {
             if (data.priceRange.min !== priceBoundaries?.min || data.priceRange.max !== priceBoundaries?.max) {
                 setPriceBoundaries({ min: data.priceRange.min, max: data.priceRange.max });
             }
-            if (!priceRange) {
+            if (!filters.priceRange) {
                 setFilters({ priceRange: { min: data.priceRange.min, max: data.priceRange.max } });
             }
         }
-    }, [ category, data, featured, priceBoundaries, priceRange, search, setFilters, setPriceBoundaries ]);
+    }, [ filters, data, priceBoundaries, setFilters, setPriceBoundaries ]);
 
     if (isError) {
         return (
@@ -40,7 +42,7 @@ export function BrowseProductsPage() {
         <div className="flex-1 flex flex-col md:flex-row items-stretch h-full">
             <ProductsFilters/>
             <div className="flex-1">
-                <ProductsBrowser products={data?.products} showSkeleton={!data || isLoading || !priceRange}/>
+                <ProductsBrowser products={data?.products} showSkeleton={!data || isLoading || !filters.priceRange}/>
             </div>
         </div>
     );
