@@ -6,8 +6,6 @@ import { ProductsBrowser } from "@/pages/browse-products-page/components/Product
 import { useProductFilters } from "@/hooks/use-filters.tsx";
 
 export function BrowseProductsPage() {
-    console.log("BrowseProductsPage");
-
     const { category, priceRange, search, featured, priceBoundaries, setFilters, setPriceBoundaries } = useProductFilters();
     const { data, isLoading, isError } = useGetProducts({ category, priceRange, search });
 
@@ -27,7 +25,7 @@ export function BrowseProductsPage() {
                 setFilters({ priceRange: { min: data.priceRange.min, max: data.priceRange.max } });
             }
         }
-    }, [ data, priceBoundaries, priceRange, setFilters, setPriceBoundaries ]);
+    }, [ category, data, featured, priceBoundaries, priceRange, search, setFilters, setPriceBoundaries ]);
 
     if (isError) {
         return (

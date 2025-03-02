@@ -12,10 +12,8 @@ interface ProductFiltersContextType {
     setFilters: (filters: ProductFilters) => void;
 }
 
-// Creating the context
 const ProductFiltersContext = createContext<ProductFiltersContextType | undefined>(undefined);
 
-// **Provider Component**
 export const ProductFiltersProvider = ({ children }: { children: React.ReactNode }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [priceBoundaries, setPriceBoundaries] = useState<PriceRange>();
@@ -62,7 +60,6 @@ export const ProductFiltersProvider = ({ children }: { children: React.ReactNode
     );
 };
 
-// **Custom Hook to Consume the Context**
 export const useProductFilters = (): ProductFiltersContextType => {
     const context = useContext(ProductFiltersContext);
     if (!context) {
