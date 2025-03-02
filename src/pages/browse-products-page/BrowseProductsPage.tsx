@@ -1,11 +1,13 @@
 import { useLayoutEffect } from "react";
 import { useGetProducts } from "@/api/hooks/product-hooks";
 import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
-import { ProductsFilters } from "@/components/feature/ProductsFilters";
+import { ProductsFilters } from "@/pages/product-page/components/ProductsFilters.tsx";
 import { ProductsBrowser } from "@/pages/browse-products-page/components/ProductsBrowser";
 import { useProductFilters } from "@/hooks/use-filters.tsx";
 
 export function BrowseProductsPage() {
+    console.log("BrowseProductsPage");
+
     const { category, priceRange, search, priceBoundaries, setFilters, setPriceBoundaries } = useProductFilters();
     const { data, isLoading, isError } = useGetProducts({ category, priceRange, search });
 
@@ -20,7 +22,7 @@ export function BrowseProductsPage() {
                 setFilters({ priceRange: { min: 0, max: data.priceRange.max } });
             }
         }
-    }, [data, priceBoundaries, priceRange, setFilters, setPriceBoundaries]);
+    }, [ data, priceBoundaries, priceRange, setFilters, setPriceBoundaries ]);
 
     if (isError) {
         return (
@@ -32,7 +34,7 @@ export function BrowseProductsPage() {
     }
 
     return (
-        <div className="flex-1 flex flex-col md:flex-row items-stretch">
+        <div className="flex-1 flex flex-col md:flex-row items-stretch h-full">
             <ProductsFilters/>
             <div className="flex-1">
                 <ProductsBrowser products={data?.products} showSkeleton={!data || isLoading || !priceRange}/>

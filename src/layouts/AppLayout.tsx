@@ -5,7 +5,7 @@ export function AppLayout() {
     return (
         <div className="min-h-screen flex flex-col">
             <TopBar />
-            <div className="flex-1">
+            <div className="flex flex-col flex-1">
                 <Outlet />
             </div>
         </div>

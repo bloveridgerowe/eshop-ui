@@ -6,25 +6,22 @@ import { Slider } from "../ui/slider";
 export interface PriceControlProps {
     availableMin: number;
     availableMax: number;
-    value: [number, number]; // current selection
+    value: [number, number];
     onChange: (minValue: number, maxValue: number) => void;
 }
 
 export function PriceControl({ availableMin, availableMax, value, onChange }: PriceControlProps) {
-    const [localValues, setLocalValues] = useState<[number, number]>(value);
+    const [ localValues, setLocalValues ] = useState<[number, number]>(value);
 
-    // Sync local state when the incoming value changes.
     useEffect(() => {
         setLocalValues(value);
-    }, [value]);
+    }, [ value ]);
 
-    // Debounce the onChange callback.
     const debouncedOnChange = useRef(
         debounce((newValues: [number, number]) => onChange(newValues[0], newValues[1]), 250)
     ).current;
 
     const handleValueChange = (newValues: [number, number]) => {
-        console.log(newValues)
         setLocalValues(newValues);
         debouncedOnChange(newValues);
     };
@@ -33,14 +30,11 @@ export function PriceControl({ availableMin, availableMax, value, onChange }: Pr
         return () => {
             debouncedOnChange.cancel();
         };
-    }, [debouncedOnChange]);
-
-    console.log({ availableMin, availableMax})
+    }, [ debouncedOnChange ]);
 
     if (availableMin === 0 && availableMax === 0) {
         return;
     }
-
 
     return (
         <div className="flex md:flex-wrap items-center md:justify-center space-x-2 mx-1">
