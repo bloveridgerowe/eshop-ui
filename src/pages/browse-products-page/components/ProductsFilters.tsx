@@ -29,8 +29,6 @@ export function ProductsFiltersList() {
     const { priceBoundaries, priceRange, category, featured, setFilters } = useProductFilters();
     const { data: categories = [] } = useGetCategories();
 
-    console.log( { priceRange})
-
     return (
         <Fragment>
             <section className={`${containerStyles} border-b pb-2`}>

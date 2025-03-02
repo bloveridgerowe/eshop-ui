@@ -12,7 +12,6 @@ export interface PriceControlProps {
 
 export function PriceControl({ availableMin, availableMax, value, onChange }: PriceControlProps) {
     const [ localValues, setLocalValues ] = useState<[number, number]>(value);
-    console.log({availableMin, availableMax})
 
     useEffect(() => {
         setLocalValues(value);
@@ -23,7 +22,6 @@ export function PriceControl({ availableMin, availableMax, value, onChange }: Pr
     ).current;
 
     const handleValueChange = (newValues: [number, number]) => {
-        console.log(newValues);
         setLocalValues(newValues);
         debouncedOnChange(newValues);
     };
