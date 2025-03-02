@@ -40,7 +40,7 @@ export async function getProducts({ search, category, featured = true, priceRang
         params.append("featured", "true");
     }
 
-    if (priceRange) {
+    if (priceRange && priceRange.max > 0) {
         params.append("minPrice", priceRange.min.toString());
         params.append("maxPrice", priceRange.max.toString());
     }

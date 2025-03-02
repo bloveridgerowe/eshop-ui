@@ -6,18 +6,18 @@ import { ProductsBrowser } from "@/pages/browse-products-page/components/Product
 import { useProductFilters } from "@/hooks/use-filters.tsx";
 
 export function BrowseProductsPage() {
-    const { category, priceRange, priceBoundaries, setPriceBoundaries } = useProductFilters();
-
-    console.log({ category, priceRange });
-
+    const { category, priceRange, priceBoundaries, setFilters, setPriceBoundaries } = useProductFilters();
     const { data, isLoading, isError } = useGetProducts({ category, priceRange });
 
     useLayoutEffect(() => {
         if (data && data.priceRange) {
-            const newBoundaries = { min: data.priceRange.min, max: data.priceRange.max };
-
-            if (newBoundaries.min !== priceBoundaries.min || newBoundaries.max !== priceBoundaries.max) {
-                setPriceBoundaries(newBoundaries);
+            console.log("PRICE BOUND", data.priceRange);
+            if (data.priceRange.min !== priceBoundaries.min || data.priceRange.max !== priceBoundaries.max) {
+                setPriceBoundaries({ min: data.priceRange.min, max: data.priceRange.max });
+            }
+            console.log("PRICE RANGE", priceRange)
+            if (!priceRange) {
+                setFilters({ priceRange: { min: 0, max: data.priceRange.max } });
             }
         }
     }, [data, priceBoundaries, setPriceBoundaries]);
