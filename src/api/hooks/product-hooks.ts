@@ -1,6 +1,6 @@
 import {useQuery, useSuspenseQuery} from "@tanstack/react-query";
 import { queryKeys } from "@/api/hooks/query-keys";
-import { getProduct, getProducts } from "@/api/services/products-service";
+import {getProduct, getProducts, PriceRange} from "@/api/services/products-service";
 
 export function useGetProduct(id: string) {
     return useSuspenseQuery({
@@ -11,16 +11,15 @@ export function useGetProduct(id: string) {
 }
 
 interface useGetProductsParams {
-    searchQuery?: string;
-    categoryId?: string;
-    minPrice?: number;
-    maxPrice?: number;
+    search?: string;
+    category?: string;
+    priceRange?: PriceRange;
 }
 
-export function useGetProducts({ searchQuery, categoryId, minPrice, maxPrice }: useGetProductsParams) {
+export function useGetProducts({ search, category, priceRange }: useGetProductsParams) {
     return useQuery({
-        queryKey: ["products", { searchQuery, categoryId, minPrice, maxPrice } ],
-        queryFn: () => getProducts({ search: searchQuery, category: categoryId, minPrice, maxPrice }),
+        queryKey: ["products", { search, category, priceRange } ],
+        queryFn: () => getProducts({ search, category, priceRange }),
         staleTime: 60 * 1000
     });
 }
