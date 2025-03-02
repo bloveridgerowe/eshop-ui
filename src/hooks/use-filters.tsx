@@ -36,10 +36,12 @@ export const ProductFiltersProvider = ({ children }: { children: React.ReactNode
                 params.delete('featured');
                 params.delete('minPrice');
                 params.delete('maxPrice');
+                params.delete('search');
                 params.set('category', filters.category);
             }
             if (filters.featured) {
                 params.set('featured', true.toString());
+                params.delete('search');
                 params.delete('category');
                 params.delete('minPrice');
                 params.delete('maxPrice');

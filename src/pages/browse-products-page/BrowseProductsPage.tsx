@@ -35,7 +35,7 @@ export function BrowseProductsPage() {
         <div className="flex-1 flex flex-col md:flex-row items-stretch">
             <ProductsFilters/>
             <div className="flex-1">
-                <ProductsBrowser products={data?.products} showSkeleton={isLoading} />
+                <ProductsBrowser products={data?.products} showSkeleton={!data || isLoading || !priceRange}/>
             </div>
         </div>
     );

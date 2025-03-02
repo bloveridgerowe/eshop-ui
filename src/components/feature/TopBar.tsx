@@ -29,11 +29,14 @@ export function TopBar() {
         if (search) {
             setSearchTerm(search);
         }
+        else {
+            setSearchTerm("");
+        }
     }, [ search ]);
 
     return (
         <header className="flex flex-wrap items-center border-b border-input">
-            <Link className="p-2 order-1 md:order-1 mr-auto" to={Paths.featured()}>
+            <Link className="p-2 order-1 md:order-1 mr-auto" to={Paths.products}>
                 <Button>
                     <Store size={24} />
                     <span>EShop</span>
