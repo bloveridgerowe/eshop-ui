@@ -19,12 +19,14 @@ export const ProductFiltersProvider = ({ children }: { children: React.ReactNode
     const [searchParams, setSearchParams] = useSearchParams();
     const [priceBoundaries, setPriceBoundaries] = useState({ min: 0, max: 1050 });
 
+    console.log(searchParams.get("minPrice"));
+
     const search = searchParams.get('search') as ProductFilters['search'];
     const category = searchParams.get('category') as ProductFilters['category'];
     const minPrice = searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice') as string) : 0;
     const maxPrice = searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice') as string) : 0;
 
-    const priceRange = minPrice && maxPrice ? { min: minPrice, max: maxPrice } : { min: 0, max: 0 };
+    const priceRange = minPrice != null && maxPrice != null ? { min: minPrice, max: maxPrice } : { min: 0, max: 0 };
 
     const setFilters = useCallback((filters: ProductFilters) => {
         setSearchParams((params) => {

@@ -10,7 +10,7 @@ export function ProductsFilters() {
     const { data: categories } = useGetCategories();
     const categoryItems = getCategoryItems(categories);
 
-    console.log("priceBoundaries NOW ", priceBoundaries);
+    console.log("range NOW ", priceRange);
 
     return (
         <aside className="w-full py-2 md:w-48 flex flex-col border-b md:border-r mb-2 md:mb-0 gap-2 border-input">

@@ -8,8 +8,7 @@ import { useProductFilters } from "@/hooks/use-filters.tsx";
 export function BrowseProductsPage() {
     const { category, priceRange, priceBoundaries, setPriceBoundaries } = useProductFilters();
 
-    console.log("products category", category);
-    console.log("price range", priceRange);
+    console.log({ category, priceRange });
 
     const { data, isLoading, isError } = useGetProducts({ category, priceRange });
 
