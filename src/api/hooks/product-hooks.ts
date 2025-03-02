@@ -20,7 +20,7 @@ interface useGetProductsParams {
 export function useGetProducts({ searchQuery, categoryId, minPrice, maxPrice }: useGetProductsParams) {
     return useQuery({
         queryKey: ["products", { searchQuery, categoryId, minPrice, maxPrice } ],
-        queryFn: () => getProducts({ searchQuery, categoryId, minPrice, maxPrice }),
+        queryFn: () => getProducts({ search: searchQuery, category: categoryId, minPrice, maxPrice }),
         staleTime: 60 * 1000
     });
 }

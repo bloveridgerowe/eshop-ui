@@ -3,45 +3,51 @@ import { useGetProducts } from "@/api/hooks/product-hooks";
 import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
 import {PriceRange, ProductsFilters } from "@/components/feature/ProductsFilters";
 import { ProductsBrowser } from "@/pages/browse-products-page/components/ProductsBrowser";
+import {useProductFilters} from "@/hooks/use-filters.tsx";
 
 export function BrowseProductsPage() {
     // Separate state: boundaries vs. selection.
-    const [boundaries, setBoundaries] = useState<PriceRange>({ min: 0, max: 1005 });
-    const [selection, setSelection] = useState<PriceRange>({ min: 0, max: 1005 });
-    const [categoryId, setCategoryId] = useState<string | undefined>(undefined);
+    const { category, priceRange, priceBoundaries, setFilters, setPriceBoundaries } = useProductFilters();
+
+    console.log("products category", category);
+    console.log("price range", priceRange);
 
     // We always pass the boundaries (for filtering the query) to the server.
     const { data, isLoading, isError } = useGetProducts({
-        categoryId,
-        minPrice: selection.min,
-        maxPrice: selection.max,
+        categoryId: category,
+        minPrice: priceRange.min,
+        maxPrice: priceRange.max,
     });
 
     useLayoutEffect(() => {
         if (data && data.priceRange) {
             const newBoundaries = { min: data.priceRange.min, max: data.priceRange.max };
+            // console.log("newBoundaries", newBoundaries);
 
             // If the boundaries have changed...
-            if (newBoundaries.min !== boundaries.min || newBoundaries.max !== boundaries.max) {
-                setBoundaries(newBoundaries);
+            if (newBoundaries.min !== priceBoundaries.min || newBoundaries.max !== priceBoundaries.max) {
+                setPriceBoundaries(newBoundaries);
 
-                // Only update selection if it hasn't diverged from the previous boundaries.
-                setSelection(prevSelection => {
-                    if (prevSelection.min === boundaries.min && prevSelection.max === boundaries.max) {
+                // initial range needs to be the boundaries
+                // after that have at it
+
+                setFilters(prevSelection => {
+                    if (prevSelection.min === priceBoundaries.min && prevSelection.max === boundaripriceBoundarieses.max) {
                         return newBoundaries;
                     }
                     return prevSelection;
                 });
+
             }
             // Category is not touched here—so it stays as the user last set it.
         }
-    }, [data, boundaries]);
+    }, [data, priceBoundaries]);
 
     // Local filtering based on the user's selection. (If you need to filter client-side.)
-    const filteredProducts = useMemo(() => {
-        if (!data?.products) return [];
-        return data.products.filter(p => p.price >= selection.min && p.price <= selection.max);
-    }, [data, selection]);
+    // const filteredProducts = useMemo(() => {
+    //     if (!data?.products) return [];
+    //     return data.products.filter(p => p.price >= selection.min && p.price <= selection.max);
+    // }, [data, selection]);
 
     if (isError) {
         return (
@@ -52,24 +58,11 @@ export function BrowseProductsPage() {
         );
     }
 
-    // When the filters component notifies a change, update the selection and (if needed) the category.
-    const handleFiltersChanged = (newFilters: { selection: PriceRange; categoryId?: string }) => {
-        // Only update the selection and category; boundaries remain unchanged.
-        setSelection(newFilters.selection);
-
-        if (newFilters.categoryId) {
-            setCategoryId(newFilters.categoryId);
-        }
-    };
-
     return (
         <div className="flex-1 flex flex-col md:flex-row items-stretch">
-            <ProductsFilters
-                filters={{ priceBoundaries: boundaries, priceSelection: selection, categoryId }}
-                onFiltersChanged={handleFiltersChanged}
-            />
+            <ProductsFilters/>
             <div className="flex-1">
-                <ProductsBrowser products={filteredProducts} showSkeleton={isLoading} />
+                <ProductsBrowser products={data?.products} showSkeleton={isLoading} />
             </div>
         </div>
     );

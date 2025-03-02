@@ -13,22 +13,22 @@ import { AuthProvider } from "@/components/utilities/AuthProvider";
 import { AppLoading } from "@/pages/status-pages/AppLoading";
 import { AppUnavailable } from "@/pages/status-pages/AppUnavailable";
 import { ScrollToTop } from "@/components/utilities/ScrollToTop";
-import {FiltersProvider} from "@/hooks/use-filters.tsx";
+import {ProductFiltersProvider} from "@/hooks/use-filters.tsx";
 
 createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
         <ErrorBoundary failure={<AppUnavailable/>}>
             <Suspense fallback={<AppLoading/>}>
-                <FiltersProvider>
-                    <AuthProvider>
-                        <BrowserRouter>
+                <AuthProvider>
+                    <BrowserRouter>
+                        <ProductFiltersProvider>
                             <DisclaimerModal/>
                             <Toaster/>
                             <ScrollToTop/>
                             <AppRoutes/>
-                        </BrowserRouter>
-                    </AuthProvider>
-                </FiltersProvider>
+                        </ProductFiltersProvider>
+                    </BrowserRouter>
+                </AuthProvider>
             </Suspense>
         </ErrorBoundary>
     </QueryClientProvider>
