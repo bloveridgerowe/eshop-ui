@@ -41,8 +41,8 @@ export async function getProducts({ search, category, featured = true, priceRang
     }
 
     if (priceRange) {
-        params.append("min", priceRange.min.toString());
-        params.append("max", priceRange.max.toString());
+        params.append("minPrice", priceRange.min.toString());
+        params.append("maxPrice", priceRange.max.toString());
     }
 
     const response = await api.get(`/products?${params.toString()}`);
