@@ -12,7 +12,7 @@ export function BrowseProductsPage() {
     useLayoutEffect(() => {
         if (data && data.priceRange) {
             console.log("PRICE BOUND", data.priceRange);
-            if (data.priceRange.min !== priceBoundaries.min || data.priceRange.max !== priceBoundaries.max) {
+            if (data.priceRange.min !== priceBoundaries?.min || data.priceRange.max !== priceBoundaries?.max) {
                 setPriceBoundaries({ min: data.priceRange.min, max: data.priceRange.max });
             }
             console.log("PRICE RANGE", priceRange)

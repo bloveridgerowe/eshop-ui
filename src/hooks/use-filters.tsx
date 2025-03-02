@@ -7,7 +7,7 @@ interface ProductFiltersContextType {
     category: ProductFilters['category'];
     featured: ProductFilters['featured'];
     priceRange?: PriceRange;
-    priceBoundaries: PriceRange;
+    priceBoundaries?: PriceRange;
     setPriceBoundaries: (bounds: { min: number; max: number }) => void;
     setFilters: (filters: ProductFilters) => void;
 }
@@ -18,7 +18,7 @@ const ProductFiltersContext = createContext<ProductFiltersContextType | undefine
 // **Provider Component**
 export const ProductFiltersProvider = ({ children }: { children: React.ReactNode }) => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [priceBoundaries, setPriceBoundaries] = useState({ min: 0, max: 1050 });
+    const [priceBoundaries, setPriceBoundaries] = useState<PriceRange>();
 
     console.log(searchParams.get("minPrice"));
 
