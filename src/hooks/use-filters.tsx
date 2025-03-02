@@ -19,9 +19,6 @@ const ProductFiltersContext = createContext<ProductFiltersContextType | undefine
 export const ProductFiltersProvider = ({ children }: { children: React.ReactNode }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [priceBoundaries, setPriceBoundaries] = useState<PriceRange>();
-
-    console.log(searchParams.get("minPrice"));
-
     const search = searchParams.get('search') as ProductFilters['search'];
     const featured = Boolean(searchParams.get("featured"));
     const category = searchParams.get('category') as ProductFilters['category'];
@@ -32,7 +29,7 @@ export const ProductFiltersProvider = ({ children }: { children: React.ReactNode
 
     const setFilters = useCallback((filters: ProductFilters) => {
         setSearchParams((params) => {
-            if (filters.search !== undefined) {
+            if (filters.search) {
                 params.set('search', filters.search);
             }
             if (filters.category) {

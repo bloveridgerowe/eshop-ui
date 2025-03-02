@@ -1,4 +1,5 @@
 export const Paths = {
+	products: '/products',
 	featured: () => `/products?featured=true`,
 	categories: (id?: string) => `/products${id ? `?category=${id}` : ""}`,
 	searchProducts: (query?: string) => `/products?search=${query}`,

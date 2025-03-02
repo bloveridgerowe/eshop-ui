@@ -10,17 +10,17 @@ export function BrowseProductsPage() {
     const { data, isLoading, isError } = useGetProducts({ category, priceRange });
 
     useLayoutEffect(() => {
+        // the price boundaries for the current query come from the server
+        // once we've received the data, we set the boundaries so the price slider can update
         if (data && data.priceRange) {
-            console.log("PRICE BOUND", data.priceRange);
             if (data.priceRange.min !== priceBoundaries?.min || data.priceRange.max !== priceBoundaries?.max) {
                 setPriceBoundaries({ min: data.priceRange.min, max: data.priceRange.max });
             }
-            console.log("PRICE RANGE", priceRange)
             if (!priceRange) {
                 setFilters({ priceRange: { min: 0, max: data.priceRange.max } });
             }
         }
-    }, [data, priceBoundaries, setPriceBoundaries]);
+    }, [data, priceBoundaries, priceRange, setFilters, setPriceBoundaries]);
 
     if (isError) {
         return (

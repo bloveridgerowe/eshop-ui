@@ -3,22 +3,33 @@ import { Store, User, Package, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { Paths } from "@/utilities/paths.ts";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { LoginModal } from "@/components/modals/LoginModal.tsx";
 import { useAuth } from "@/components/utilities/AuthProvider.tsx"
 import { NavIconButton } from "@/components/ui/NavButton.tsx";
+import {useProductFilters} from "@/hooks/use-filters.tsx";
 
 export function TopBar() {
     const navigate = useNavigate();
     const { user } = useAuth();
+    const { search } = useProductFilters();
     const [ searchTerm, setSearchTerm ] = useState("");
 
     const handleSearch = () => {
         if (!searchTerm.trim()) {
             return;
         }
-        navigate(Paths.searchProducts(searchTerm));
+        navigate({
+            pathname: Paths.products,
+            search: new URLSearchParams({ search: searchTerm }).toString(),
+        });
     };
+
+    useEffect(() => {
+        if (search) {
+            setSearchTerm(search);
+        }
+    }, [ search ]);
 
     return (
         <header className="flex flex-wrap items-center border-b border-input">

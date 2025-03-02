@@ -17,7 +17,6 @@ interface useGetProductsParams {
 }
 
 export function useGetProducts({ search, category, priceRange }: useGetProductsParams) {
-    console.log("RQ", { search, category, priceRange });
     return useQuery({
         queryKey: ["products", { search, category, priceRange } ],
         queryFn: () => getProducts({ search, category, priceRange }),

@@ -24,6 +24,7 @@ export function PriceControl({ availableMin, availableMax, value, onChange }: Pr
     ).current;
 
     const handleValueChange = (newValues: [number, number]) => {
+        console.log(newValues)
         setLocalValues(newValues);
         debouncedOnChange(newValues);
     };
@@ -43,6 +44,7 @@ export function PriceControl({ availableMin, availableMax, value, onChange }: Pr
                 value={localValues}
                 min={availableMin}
                 max={availableMax}
+                minStepsBetweenThumbs={10}
                 step={1}
                 onValueChange={handleValueChange}
                 className={cn("w-full slider-black order-2 md:order-4 md:w-full")}
