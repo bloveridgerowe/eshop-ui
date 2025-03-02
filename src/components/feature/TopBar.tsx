@@ -20,7 +20,7 @@ export function TopBar() {
             return;
         }
         navigate({
-            pathname: Paths.products,
+            pathname: Paths.products(),
             search: new URLSearchParams({ search: searchTerm }).toString(),
         });
     };
@@ -36,7 +36,7 @@ export function TopBar() {
 
     return (
         <header className="flex flex-wrap items-center border-b border-input">
-            <Link className="p-2 order-1 md:order-1 mr-auto" to={Paths.products}>
+            <Link className="p-2 order-1 md:order-1 mr-auto" to={Paths.products()}>
                 <Button>
                     <Store size={24} />
                     <span>EShop</span>

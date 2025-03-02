@@ -17,8 +17,8 @@ export function AppRoutes() {
         <Suspense fallback={<LoadingSpinnerPage delay={1000}/>}>
             <Routes>
                 <Route path="/" element={<AppLayout/>}>
-                    <Route index element={<Navigate to={Paths.featured()} replace />} />
-                    <Route path={Paths.categories()} element={<BrowseProductsPage />} />
+                    <Route index element={<Navigate to={Paths.products()} replace />} />
+                    <Route path={Paths.products()} element={<BrowseProductsPage />} />
                     <Route path={Paths.product()} element={<ProductPage />} />
                     <Route element={<ProtectedRoute/>}>
                         <Route element={<UserLayout/>}>

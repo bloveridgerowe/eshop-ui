@@ -1,9 +1,6 @@
 export const Paths = {
-	products: '/products',
-	featured: () => `/products?featured=true`,
-	categories: (id?: string) => `/products${id ? `?category=${id}` : ""}`,
-	searchProducts: (query?: string) => `/products?search=${query}`,
-	product: (id?: string) => `/products/${id ? id : ":id"}`,
+	products: () => '/products',
+	product: (id?: string) => `/products/${id ?? ':id'}`,
 	orderPlaced: () => `/order-confirmed`,
 	profile: () => `/profile`,
 	orders: () => `/orders`,

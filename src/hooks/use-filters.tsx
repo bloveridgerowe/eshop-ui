@@ -47,9 +47,10 @@ export const ProductFiltersProvider = ({ children }: { children: React.ReactNode
                 params.delete('maxPrice');
             }
             if (filters.priceRange) {
-                params.set('minPrice', filters.priceRange.min.toString());
-                params.set('maxPrice', filters.priceRange.max.toString());
+                params.set('minPrice', Math.floor(filters.priceRange.min).toString());
+                params.set('maxPrice', Math.ceil(filters.priceRange.max).toString());
             }
+
             return params;
         });
     }, [ setSearchParams ]);

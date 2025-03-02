@@ -8,7 +8,7 @@ import { Fragment } from "react";
 
 const containerStyles = "px-2 flex flex-row md:flex-col w-full overflow-x-auto md:overflow-visible";
 const filterSectionStyles = "flex flex-row md:flex-col w-full gap-2 px-2 overflow-x-auto md:overflow-visible";
-const filterWrapperStyles = "w-full h-12 flex flex-col bg-secondary p-2 rounded justify-center";
+const filterWrapperStyles = "w-full h-12 md:h-14 flex flex-col bg-secondary p-2 md:pb-3 rounded justify-center";
 
 export function ProductsFilters() {
     const { priceBoundaries, priceRange } = useProductFilters();
@@ -28,6 +28,8 @@ export function ProductsFilters() {
 export function ProductsFiltersList() {
     const { priceBoundaries, priceRange, category, featured, setFilters } = useProductFilters();
     const { data: categories = [] } = useGetCategories();
+
+    console.log( { priceRange})
 
     return (
         <Fragment>
@@ -76,8 +78,8 @@ export function ProductsFiltersListSkeleton() {
                 </div>
             </section>
             <section className={filterSectionStyles}>
-                {Array.from({ length: 5 }).map((_, i) => (
-                    <Button key={i} variant="secondary" className="whitespace-nowrap flex items-center gap-2">
+                {Array.from({ length: 16 }).map((_, i) => (
+                    <Button disabled key={i} variant="secondary" className="whitespace-nowrap flex items-center gap-2">
                         <Skeleton className="h-4 w-16" />
                     </Button>
                 ))}
