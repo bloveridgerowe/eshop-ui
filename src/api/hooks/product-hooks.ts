@@ -1,6 +1,6 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import {useQuery, useSuspenseQuery} from "@tanstack/react-query";
 import { queryKeys } from "@/api/hooks/query-keys";
-import { getProduct, getProducts } from "@/api/services/products-service";
+import {getProduct, getProducts, PriceRange} from "@/api/services/products-service";
 
 export function useGetProduct(id: string) {
     return useSuspenseQuery({
@@ -10,33 +10,16 @@ export function useGetProduct(id: string) {
     });
 }
 
-export function useGetProducts({ searchQuery, categoryId }: { searchQuery?: string; categoryId?: string; }) {
-    function getProductsQueryConfig() {
-        if (searchQuery) {
-            return {
-                queryKey: queryKeys.searchProducts(searchQuery),
-                queryParams: { searchQuery, categoryId: undefined, isFeatured: false },
-            };
-        }
-        else if (categoryId) {
-            return {
-                queryKey: queryKeys.productsByCategory(categoryId),
-                queryParams: { searchQuery: undefined, categoryId, isFeatured: false },
-            };
-        }
-        else {
-            return {
-                queryKey: queryKeys.featuredProducts(),
-                queryParams: { searchQuery: undefined, categoryId: undefined, isFeatured: true },
-            };
-        }
-    }
+interface useGetProductsParams {
+    search?: string;
+    category?: string;
+    priceRange?: PriceRange;
+}
 
-    const { queryKey, queryParams } = getProductsQueryConfig();
-
-    return useSuspenseQuery({
-        queryKey,
-        queryFn: () => getProducts(queryParams),
+export function useGetProducts({ search, category, priceRange }: useGetProductsParams) {
+    return useQuery({
+        queryKey: ["products", { search, category, priceRange } ],
+        queryFn: () => getProducts({ search, category, priceRange }),
         staleTime: 60 * 1000
     });
 }

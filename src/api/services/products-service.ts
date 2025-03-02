@@ -10,10 +10,16 @@ export interface Product {
     description?: string;
 }
 
-interface GetProductsParams {
-    searchQuery?: string;
-    categoryId?: string;
-    isFeatured?: boolean;
+export interface ProductFilters {
+    search?: string;
+    category?: string;
+    featured?: boolean;
+    priceRange?: PriceRange;
+}
+
+export interface PriceRange {
+    max: number,
+    min: number,
 }
 
 export async function getProduct({ id }: { id: string }): Promise<Product> {
@@ -21,19 +27,24 @@ export async function getProduct({ id }: { id: string }): Promise<Product> {
     return response.data.productDetails;
 }
 
-export async function getProducts({ searchQuery, categoryId, isFeatured = true }: GetProductsParams): Promise<Product[]> {
+export async function getProducts({ search, category, featured = true, priceRange }: ProductFilters): Promise<{ priceRange: PriceRange, products: Product[] }> {
     const params = new URLSearchParams();
 
-    if (searchQuery) {
-        params.append("search", searchQuery);
+    if (search) {
+        params.append("search", search);
     }
-    else if (categoryId) {
-        params.append("category", categoryId);
+    else if (category) {
+        params.append("category", category);
     }
-    else if (isFeatured) {
+    else if (featured) {
         params.append("featured", "true");
     }
 
+    if (priceRange && priceRange.max > 0) {
+        params.append("minPrice", priceRange.min.toString());
+        params.append("maxPrice", priceRange.max.toString());
+    }
+
     const response = await api.get(`/products?${params.toString()}`);
-    return response.data.products;
+    return response.data;
 }

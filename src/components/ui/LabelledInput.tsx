@@ -1,4 +1,4 @@
-import { Input } from "@/components/shadcn/input";
+import { Input } from "@/components/ui/input.tsx";
 import { ChangeEvent } from "react";
 
 export interface LabelledInputProps {

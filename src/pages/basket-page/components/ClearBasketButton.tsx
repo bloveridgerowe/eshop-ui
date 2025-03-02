@@ -1,8 +1,8 @@
 import { Trash2 } from "lucide-react";
-import { Button } from "@/components/shadcn/button";
+import { Button } from "@/components/ui/button.tsx";
 import { useClearBasket } from "@/api/hooks/basket-hooks";
 import { errorMessage } from "@/utilities/errors";
-import { useToast } from "@/components/shadcn/use-toast";
+import { useToast } from "@/components/ui/use-toast.ts";
 
 export function ClearBasketButton() {
     const { mutateAsync: clearBasket, isPending: isClearingBasket } = useClearBasket();

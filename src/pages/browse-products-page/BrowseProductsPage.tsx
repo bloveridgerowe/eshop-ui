@@ -1,27 +1,49 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { Suspense, useEffect } from "react";
-import { Paths } from "@/utilities/paths";
-import { BrowseProducts, BrowseProductsSkeleton } from "@/pages/browse-products-page/components/BrowseProducts";
+import { useLayoutEffect } from "react";
+import { useGetProducts } from "@/api/hooks/product-hooks";
+import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
+import { ProductsFilters } from "@/pages/browse-products-page/components/ProductsFilters.tsx";
+import { ProductsBrowser } from "@/pages/browse-products-page/components/ProductsBrowser";
+import { useProductFilters } from "@/hooks/use-filters.tsx";
 
 export function BrowseProductsPage() {
-    const navigate = useNavigate();
-    const [ searchParams ] = useSearchParams();
-    const searchQuery = searchParams.get("search") || undefined;
-    const categoryId = searchParams.get("category") || undefined;
+    console.log("BrowseProductsPage");
 
-    useEffect(() => {
-        const hasValidParams = searchQuery || categoryId || searchParams.has("featured");
+    const { category, priceRange, search, featured, priceBoundaries, setFilters, setPriceBoundaries } = useProductFilters();
+    const { data, isLoading, isError } = useGetProducts({ category, priceRange, search });
 
-        if (!hasValidParams) {
-            navigate(Paths.featured(), { replace: true });
+    useLayoutEffect(() => {
+        if (!category && !search && !featured) {
+            setFilters({ featured: true });
         }
-    }, [searchQuery, categoryId, searchParams, navigate]);
+
+        // the price boundaries for the current query come from the server
+        // once we've received the data, we set the boundaries so the price slider can update
+
+        if (data && data.priceRange) {
+            if (data.priceRange.min !== priceBoundaries?.min || data.priceRange.max !== priceBoundaries?.max) {
+                setPriceBoundaries({ min: data.priceRange.min, max: data.priceRange.max });
+            }
+            if (!priceRange) {
+                setFilters({ priceRange: { min: data.priceRange.min, max: data.priceRange.max } });
+            }
+        }
+    }, [ data, priceBoundaries, priceRange, setFilters, setPriceBoundaries ]);
+
+    if (isError) {
+        return (
+            <ResultPage variant="error">
+                <ResultPageHeader>Failed to load products.</ResultPageHeader>
+                <ResultPageMessage>Please try again later.</ResultPageMessage>
+            </ResultPage>
+        );
+    }
 
     return (
-        <Suspense fallback={<BrowseProductsSkeleton />}>
-            <BrowseProducts/>
-        </Suspense>
+        <div className="flex-1 flex flex-col md:flex-row items-stretch h-full">
+            <ProductsFilters/>
+            <div className="flex-1">
+                <ProductsBrowser products={data?.products} showSkeleton={!data || isLoading || !priceRange}/>
+            </div>
+        </div>
     );
 }
-
-

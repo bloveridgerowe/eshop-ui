@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "@/components/shadcn/button";
+import { Button, ButtonProps } from "@/components/ui/button.tsx";
 import { NavLink, Link, To } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 
@@ -10,8 +10,8 @@ interface IconButtonProps extends ButtonProps {
 export function IconButton({ icon: Icon, label, ...rest }: IconButtonProps) {
     return (
         <Button {...rest}>
-            <Icon size={16} className={label && "mr-1"} />
-            {label}
+            <Icon size={16} className={label && "md:mr-1"} />
+            <span className="hidden md:flex">{label}</span>
         </Button>
     );
 }

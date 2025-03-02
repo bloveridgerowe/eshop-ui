@@ -1,9 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/shadcn/card";
-import { Button } from "@/components/shadcn/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.tsx";
+import { Button } from "@/components/ui/button.tsx";
 import { BasketItem } from "@/api/services/basket-service";
 import { errorMessage } from "@/utilities/errors";
 import { useDeleteItemFromBasket, useUpdateBasketQuantity } from "@/api/hooks/basket-hooks";
-import { useToast } from "@/components/shadcn/use-toast";
+import { useToast } from "@/components/ui/use-toast.ts";
 
 interface BasketItemCardProps {
     item: BasketItem;
