@@ -8,6 +8,8 @@ export function ProductsFilters() {
     const { priceBoundaries, priceRange, category, featured, setFilters } = useProductFilters();
     const { data: categories = [], isLoading } = useGetCategories();
 
+    console.log(priceBoundaries);
+
     return (
         <aside className="w-full py-2 md:w-48 flex flex-col border-b md:border-r mb-2 md:mb-0 gap-2 border-input md:min-w-[200px]">
             {(priceBoundaries && priceRange && !isLoading) && (
@@ -47,7 +49,7 @@ export function ProductsFilters() {
                                     key={c.id}
                                     variant={isSelected ? "default" : "secondary"}
                                     className="whitespace-nowrap flex items-center gap-2"
-                                    onClick={() => setFilters({ category: c.id, priceRange: undefined })}
+                                    onClick={() => setFilters({ category: c.id, priceRange: undefined, search: undefined })}
                                 >
                                     {c.id === "featured" && <Star className="w-4 h-4" />}
                                     {c.name}

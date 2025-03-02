@@ -35,6 +35,13 @@ export function PriceControl({ availableMin, availableMax, value, onChange }: Pr
         };
     }, [debouncedOnChange]);
 
+    console.log({ availableMin, availableMax})
+
+    if (availableMin === 0 && availableMax === 0) {
+        return;
+    }
+
+
     return (
         <div className="flex md:flex-wrap items-center md:justify-center space-x-2 mx-1">
             <span className="order-1 text-sm text-gray-600 md:mb-2">£{localValues[0]}</span>

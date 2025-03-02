@@ -6,8 +6,8 @@ import { ProductsBrowser } from "@/pages/browse-products-page/components/Product
 import { useProductFilters } from "@/hooks/use-filters.tsx";
 
 export function BrowseProductsPage() {
-    const { category, priceRange, priceBoundaries, setFilters, setPriceBoundaries } = useProductFilters();
-    const { data, isLoading, isError } = useGetProducts({ category, priceRange });
+    const { category, priceRange, search, priceBoundaries, setFilters, setPriceBoundaries } = useProductFilters();
+    const { data, isLoading, isError } = useGetProducts({ category, priceRange, search });
 
     useLayoutEffect(() => {
         // the price boundaries for the current query come from the server
