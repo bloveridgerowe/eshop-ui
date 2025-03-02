@@ -3,7 +3,7 @@ import {TopBar} from "@/components/feature/TopBar.tsx";
 
 export function AppLayout() {
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-dvh flex flex-col">
             <TopBar />
             <div className="flex flex-col flex-1">
                 <Outlet />

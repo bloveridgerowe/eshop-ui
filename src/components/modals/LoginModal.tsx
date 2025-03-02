@@ -34,7 +34,7 @@ export function LoginModal() {
                 await register({ email, password });
             }
 
-            navigate(Paths.featured());
+            navigate(Paths.products());
             setOpen(false);
         }
         catch (error) {
@@ -48,7 +48,7 @@ export function LoginModal() {
         try {
             await demoLogin();
 
-            navigate(Paths.featured());
+            navigate(Paths.products());
             setOpen(false);
         }
         catch (error) {

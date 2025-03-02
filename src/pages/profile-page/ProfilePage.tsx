@@ -14,12 +14,6 @@ export function ProfilePage() {
     const navigate = useNavigate();
     const { user, isLoading } = useAuth();
 
-    useEffect(() => {
-        if (!isLoading && !user) {
-            navigate(Paths.featured(), { replace: true });
-        }
-    }, [ isLoading, user, navigate ]);
-
     if (isLoading) {
         return (
             <LoadingSpinnerContainer className="p-4 border-r border-input">

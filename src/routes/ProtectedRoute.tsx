@@ -6,7 +6,7 @@ export function ProtectedRoute() {
     const { user } = useAuth();
 
     if (!user) {
-        return <Navigate to={Paths.featured()} replace/>;
+        return <Navigate to={Paths.products()} replace/>;
     }
 
     return <Outlet/>;

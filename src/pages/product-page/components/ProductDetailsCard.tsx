@@ -29,7 +29,7 @@ export function ProductDetailsCard({ id }: ProductDetailsCardProps) {
                 <ResultPageHeader>Product not found.</ResultPageHeader>
                 <ResultPageMessage>We couldn’t find the product you’re looking for.</ResultPageMessage>
                 <ResultPageActions>
-                    <Link to={Paths.featured()}>
+                    <Link to={Paths.products()}>
                         <Button className="w-full">Continue Shopping</Button>
                     </Link>
                 </ResultPageActions>

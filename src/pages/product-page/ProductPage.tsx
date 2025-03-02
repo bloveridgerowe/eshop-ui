@@ -7,7 +7,7 @@ export function ProductPage() {
     const navigate  = useNavigate();
 
     if (!id) {
-        navigate(Paths.featured(), { replace: true });
+        navigate(Paths.products(), { replace: true });
         return;
     }
 
