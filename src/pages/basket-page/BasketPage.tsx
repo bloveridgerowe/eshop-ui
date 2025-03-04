@@ -1,11 +1,11 @@
 import { useGetBasketItems } from "@/api/hooks/basket-hooks";
-import { UserPageContent } from "@/components/feature/UserPageContent.tsx";
+import { UserPageContent } from "@/components/feature/UserPageContent";
 import { ClearBasketButton } from "@/pages/basket-page/components/ClearBasketButton";
 import { BasketItemCard } from "@/pages/basket-page/components/BasketItemCard";
 import { PlaceOrderButton } from "@/pages/basket-page/components/PlaceOrderButton";
 import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button.tsx";
+import { Button } from "@/components/ui/button";
 
 export function BasketPage() {
     const { data: basketItems } = useGetBasketItems();

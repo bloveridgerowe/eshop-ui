@@ -1,9 +1,9 @@
-import { Card, CardContent } from "@/components/ui/card.tsx";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
+import { Card, CardContent } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AddToBasketButton } from "@/pages/product-page/components/AddToBasketButton";
 import { useEffect, useState } from "react";
-import { getStockDisplay } from "@/utilities/stock.ts";
-import { Product } from "@/api/services/products-service.ts";
+import { getStockDisplay } from "@/utilities/stock";
+import { Product } from "@/api/services/products-service";
 
 interface ProductDetailsCardProps {
     product: Product;

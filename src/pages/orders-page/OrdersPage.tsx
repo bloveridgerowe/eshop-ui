@@ -2,8 +2,8 @@ import { OrderCard } from "@/pages/orders-page/components/OrderCard";
 import { useGetOrders } from "@/api/hooks/order-hooks";
 import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button.tsx";
-import { UserPageContent } from "@/components/feature/UserPageContent.tsx";
+import { Button } from "@/components/ui/button";
+import { UserPageContent } from "@/components/feature/UserPageContent";
 
 export function OrdersPage() {
     const { data: orders } = useGetOrders();

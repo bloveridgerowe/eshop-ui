@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Store, User, Package, ShoppingCart } from "lucide-react";
-import { Button } from "@/components/ui/button.tsx";
-import { Input } from "@/components/ui/input.tsx";
-import { Paths } from "@/utilities/paths.ts";
-import {useEffect, useState} from "react";
-import { LoginModal } from "@/components/modals/LoginModal.tsx";
-import { useAuth } from "@/components/utilities/AuthProvider.tsx"
-import { NavIconButton } from "@/components/ui/NavButton.tsx";
-import {useProductFilters} from "@/hooks/use-filters.tsx";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Paths } from "@/utilities/paths";
+import { useEffect, useState } from "react";
+import { LoginModal } from "@/components/modals/LoginModal";
+import { useAuth } from "@/components/utilities/AuthProvider"
+import { NavIconButton } from "@/components/ui/NavButton";
+import { useProductFilters } from "@/hooks/use-filters";
 
 export function TopBar() {
     const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import {useQuery} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getCategories } from "@/api/services/category-service";
 import { queryKeys } from "@/api/hooks/query-keys";
 

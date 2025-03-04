@@ -3,7 +3,7 @@ export const queryKeys = {
     categories: [ "categories" ],
     customer: [ "customer" ],
     orders: [ "orders" ],
-    products: [ "products" ],
+    products: [ "produ" ],
     product: [ "product" ],
     productId: (id: string) => [ ...queryKeys.product, id ],
     productsByCategory: (categoryId: string) => [ ...queryKeys.products, "category", categoryId ],

@@ -1,4 +1,4 @@
-import { LoadingSpinnerPage } from "@/pages/utility-pages/LoadingSpinnerPage.tsx";
+import { LoadingSpinnerPage } from "@/pages/utility-pages/LoadingSpinnerPage";
 
 export function AppLoading() {
     return (

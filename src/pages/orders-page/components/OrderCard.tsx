@@ -1,5 +1,5 @@
 import { OrderDetails, OrderStatus } from "@/api/services/order-service";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.tsx";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { format } from "date-fns";
 
 export interface OrderCardProps {

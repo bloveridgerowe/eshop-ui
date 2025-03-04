@@ -13,7 +13,7 @@ import { AuthProvider } from "@/components/utilities/AuthProvider";
 import { AppLoading } from "@/pages/status-pages/AppLoading";
 import { AppUnavailable } from "@/pages/status-pages/AppUnavailable";
 import { ScrollToTop } from "@/components/utilities/ScrollToTop";
-import {ProductFiltersProvider} from "@/hooks/use-filters.tsx";
+import { ProductFiltersProvider } from "@/hooks/use-filters";
 
 createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>

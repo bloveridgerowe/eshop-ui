@@ -1,6 +1,6 @@
-import {ProductListingCardSkeleton, ProductListingCard} from "@/pages/browse-products-page/components/ProductListingCard.tsx";
-import {Product} from "@/api/services/products-service.ts";
-import {useMaximumVisibleGridItems} from "@/hooks/use-maximum-visible-grid-items.tsx";
+import { ProductListingCardSkeleton, ProductListingCard } from "@/pages/browse-products-page/components/ProductListingCard";
+import { Product } from "@/api/services/products-service";
+import { useMaximumVisibleGridItems } from "@/hooks/use-maximum-visible-grid-items";
 
 interface ProductGridProps {
     products?: Product[]

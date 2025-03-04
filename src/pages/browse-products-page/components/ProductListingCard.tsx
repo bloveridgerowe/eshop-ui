@@ -1,13 +1,13 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card.tsx";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { cn } from "@/utilities/utils";
 import { Product } from "@/api/services/products-service";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { getStockDisplay } from "@/utilities/stock";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Paths } from "@/utilities/paths";
 import { AddToBasketButton } from "@/pages/browse-products-page/components/AddToBasketButton";
-import { Skeleton } from "@/components/ui/skeleton.tsx";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export interface ProductListingCardProps {
     product: Product;

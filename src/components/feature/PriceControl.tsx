@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { debounce } from "lodash";
-import { cn } from "@/utilities/utils.ts";
+import { cn } from "@/utilities/utils";
 import { Slider } from "../ui/slider";
 
 export interface PriceControlProps {

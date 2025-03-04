@@ -1,9 +1,9 @@
-import { Button } from "@/components/ui/button.tsx";
+import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
-import { PriceControl } from "@/components/feature/PriceControl.tsx";
-import { useGetCategories } from "@/api/hooks/category-hooks.ts";
-import { useProductFilters } from "@/hooks/use-filters.tsx";
-import { Skeleton } from "@/components/ui/skeleton.tsx";
+import { PriceControl } from "@/components/feature/PriceControl";
+import { useGetCategories } from "@/api/hooks/category-hooks";
+import { useProductFilters } from "@/hooks/use-filters";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Fragment } from "react";
 
 const containerStyles = "px-2 flex flex-row md:flex-col w-full overflow-x-auto md:overflow-visible";

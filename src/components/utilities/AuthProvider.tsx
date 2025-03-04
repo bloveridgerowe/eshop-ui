@@ -1,8 +1,8 @@
 import { createContext, useContext, ReactNode } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { queryKeys } from "@/api/hooks/query-keys.ts";
-import { CustomerDetails, getCustomerDetails } from "@/api/services/customer-service.ts";
-import { ApiError } from "@/api/api-client.ts";
+import { queryKeys } from "@/api/hooks/query-keys";
+import { CustomerDetails, getCustomerDetails } from "@/api/services/customer-service";
+import { ApiError } from "@/api/api-client";
 
 interface AuthContextType {
     user: CustomerDetails | undefined | null;

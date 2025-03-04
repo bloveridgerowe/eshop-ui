@@ -1,5 +1,5 @@
-import {ReactNode, Suspense} from "react";
-import {LoadingSpinnerPage} from "@/pages/utility-pages/LoadingSpinnerPage.tsx";
+import { ReactNode, Suspense } from "react";
+import { LoadingSpinnerPage } from "@/pages/utility-pages/LoadingSpinnerPage";
 
 interface UserPageContentProps {
     title: string;

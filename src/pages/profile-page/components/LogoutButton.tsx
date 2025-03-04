@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button.tsx";
+import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import { useLogout } from "@/api/hooks/customer-hooks";
 import { errorMessage } from "@/utilities/errors";
-import { useToast } from "@/components/ui/use-toast.ts";
+import { useToast } from "@/components/ui/use-toast";
 
 export function LogoutButton() {
     const { successToast, errorToast } = useToast();

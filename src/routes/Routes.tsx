@@ -1,16 +1,16 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { ProtectedRoute } from "@/routes/ProtectedRoute.tsx";
-import { BrowseProductsPage } from "@/pages/browse-products-page/BrowseProductsPage.tsx";
-import { ProductPage } from "@/pages/product-page/ProductPage.tsx";
-import { ProfilePage } from "@/pages/profile-page/ProfilePage.tsx";
-import { OrdersPage } from "@/pages/orders-page/OrdersPage.tsx";
-import { BasketPage } from "@/pages/basket-page/BasketPage.tsx";
-import { Paths } from "@/utilities/paths.ts";
-import { OrderPlacedPage } from "@/pages/order-placed-page/OrderPlacedPage.tsx";
-import { LoadingSpinnerPage } from "@/pages/utility-pages/LoadingSpinnerPage.tsx";
+import { ProtectedRoute } from "@/routes/ProtectedRoute";
+import { BrowseProductsPage } from "@/pages/browse-products-page/BrowseProductsPage";
+import { ProductPage } from "@/pages/product-page/ProductPage";
+import { ProfilePage } from "@/pages/profile-page/ProfilePage";
+import { OrdersPage } from "@/pages/orders-page/OrdersPage";
+import { BasketPage } from "@/pages/basket-page/BasketPage";
+import { Paths } from "@/utilities/paths";
+import { OrderPlacedPage } from "@/pages/order-placed-page/OrderPlacedPage";
+import { LoadingSpinnerPage } from "@/pages/utility-pages/LoadingSpinnerPage";
 import { Suspense } from "react";
-import { UserLayout } from "@/layouts/UserLayout.tsx";
-import { AppLayout } from "@/layouts/AppLayout.tsx";
+import { UserLayout } from "@/layouts/UserLayout";
+import { AppLayout } from "@/layouts/AppLayout";
 
 export function AppRoutes() {
     return (

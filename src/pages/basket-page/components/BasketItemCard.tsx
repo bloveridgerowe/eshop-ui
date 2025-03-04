@@ -1,9 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.tsx";
-import { Button } from "@/components/ui/button.tsx";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { BasketItem } from "@/api/services/basket-service";
 import { errorMessage } from "@/utilities/errors";
 import { useDeleteItemFromBasket, useUpdateBasketQuantity } from "@/api/hooks/basket-hooks";
-import { useToast } from "@/components/ui/use-toast.ts";
+import { useToast } from "@/components/ui/use-toast";
 
 interface BasketItemCardProps {
     item: BasketItem;

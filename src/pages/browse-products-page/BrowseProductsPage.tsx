@@ -1,9 +1,9 @@
 import { useLayoutEffect } from "react";
 import { useGetProducts } from "@/api/hooks/product-hooks";
 import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
-import { ProductsFilters } from "@/pages/browse-products-page/components/ProductsFilters.tsx";
+import { ProductsFilters } from "@/pages/browse-products-page/components/ProductsFilters";
 import { ProductsBrowser } from "@/pages/browse-products-page/components/ProductsBrowser";
-import { useProductFilters } from "@/hooks/use-filters.tsx";
+import { useProductFilters } from "@/hooks/use-filters";
 
 export function BrowseProductsPage() {
     const { filters, priceBoundaries, setFilters, setPriceBoundaries } = useProductFilters();

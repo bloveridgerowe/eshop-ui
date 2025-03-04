@@ -1,6 +1,6 @@
-import { createContext, useCallback, useContext, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import {PriceRange, ProductFilters} from "@/api/services/products-service.ts";
+import { PriceRange, ProductFilters } from "@/api/services/products-service";
 
 interface ProductFiltersContextType {
     filters: ProductFilters;
@@ -11,9 +11,10 @@ interface ProductFiltersContextType {
 
 const ProductFiltersContext = createContext<ProductFiltersContextType | undefined>(undefined);
 
-export const ProductFiltersProvider = ({ children }: { children: React.ReactNode }) => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [priceBoundaries, setPriceBoundaries] = useState<PriceRange>();
+export const ProductFiltersProvider = ({ children }: { children: ReactNode }) => {
+    const [ searchParams, setSearchParams ] = useSearchParams();
+    const [ priceBoundaries, setPriceBoundaries ] = useState<PriceRange>();
+
     const search = searchParams.get('search') as ProductFilters['search'];
     const featured = Boolean(searchParams.get("featured"));
     const category = searchParams.get('category') as ProductFilters['category'];

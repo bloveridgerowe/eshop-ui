@@ -1,9 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import { Paths } from "@/utilities/paths";
-import { ProductDetailsCard } from "@/pages/product-page/components/ProductDetailsCard.tsx";
-import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage.tsx";
-import { Button } from "@/components/ui/button.tsx";
-import { useGetProduct } from "@/api/hooks/product-hooks.ts";
+import { ProductDetailsCard } from "@/pages/product-page/components/ProductDetailsCard";
+import { ResultPage, ResultPageActions, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
+import { Button } from "@/components/ui/button";
+import { useGetProduct } from "@/api/hooks/product-hooks";
 
 export function ProductPage() {
     const { id } = useParams();

@@ -1,10 +1,10 @@
 import { User } from "lucide-react";
 import { LabelledInput } from "@/components/ui/LabelledInput";
-import { Button } from "@/components/ui/button.tsx";
+import { Button } from "@/components/ui/button";
 import { useUpdateName } from "@/api/hooks/customer-hooks";
 import { errorMessage } from "@/utilities/errors";
 import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast.ts";
+import { useToast } from "@/components/ui/use-toast";
 import { ProfileCard } from "@/pages/profile-page/components/ProfileCard";
 import { useAuth } from "@/components/utilities/AuthProvider"
 

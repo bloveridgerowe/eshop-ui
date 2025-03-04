@@ -1,6 +1,6 @@
-import {ResultPage, ResultPageHeader, ResultPageMessage} from "@/pages/utility-pages/ResultPage.tsx";
-import {ProductGrid} from "@/pages/browse-products-page/components/ProductGrid.tsx";
-import {Product} from "@/api/services/products-service.ts";
+import { ResultPage, ResultPageHeader, ResultPageMessage } from "@/pages/utility-pages/ResultPage";
+import { ProductGrid } from "@/pages/browse-products-page/components/ProductGrid";
+import { Product } from "@/api/services/products-service";
 
 interface ProductsBrowserProps {
     products?: Product[]

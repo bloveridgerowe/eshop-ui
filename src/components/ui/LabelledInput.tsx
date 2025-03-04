@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input.tsx";
+import { Input } from "@/components/ui/input";
 import { ChangeEvent } from "react";
 
 export interface LabelledInputProps {

@@ -18,7 +18,7 @@ interface useGetProductsParams {
 
 export function useGetProducts({ search, category, priceRange }: useGetProductsParams) {
     return useQuery({
-        queryKey: ["products", { search, category, priceRange } ],
+        queryKey: ["produ", { search, category, priceRange } ],
         queryFn: () => getProducts({ search, category, priceRange }),
         staleTime: 60 * 1000
     });

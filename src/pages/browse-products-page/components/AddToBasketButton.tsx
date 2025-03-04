@@ -1,8 +1,8 @@
 import { ShoppingCart } from "lucide-react";
-import { Button } from "@/components/ui/button.tsx";
+import { Button } from "@/components/ui/button";
 import { useAddToBasket } from "@/api/hooks/basket-hooks";
-import { useToast } from "@/components/ui/use-toast.ts";
-import {useAuth} from "@/components/utilities/AuthProvider.tsx";
+import { useToast } from "@/components/ui/use-toast";
+import { useAuth } from "@/components/utilities/AuthProvider";
 
 export interface AddToBasketButtonProps {
     productId: string;
