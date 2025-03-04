@@ -1,0 +1,13 @@
+import { Navigate, Outlet } from "react-router-dom";
+import { Paths } from "@/utilities/paths.ts";
+import { useAuth } from "@/components/utilities/AuthProvider.tsx";
+
+export function ProtectedRoute() {
+    const { user } = useAuth();
+
+    if (!user) {
+        return <Navigate to={Paths.products()} replace/>;
+    }
+
+    return <Outlet/>;
+}
